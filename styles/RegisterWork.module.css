@@ -1,0 +1,113 @@
+/* Main */
+.main {
+  height: 90vh;
+  position: relative;
+  top: 35px;
+  bottom: 35px;
+}
+
+/* Left Content */
+.leftContent {
+  height: 90vh;
+  background-image: url("../public/b9de1e2e658498c339524384fbdc112d.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.leftContent::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(93, 80, 161, 0.616);
+}
+.divIcon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.icon {
+  z-index: 99999;
+}
+.divText {
+  width: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.text {
+  z-index: 9999;
+  color: white;
+  word-spacing: 10px;
+}
+
+/* Right Content */
+.rightContent {
+  left: 35px;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.rightMain {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.divParagraph {
+  margin-top: 0px;
+  width: 100%;
+}
+.inputEmail {
+  width: 100%;
+  height: 40px;
+  border-radius: 7px;
+  border: 1px double rgba(226, 229, 237, 1);
+}
+.inputEmail[type="email"]:focus {
+  outline: none;
+  border: 2px double rgba(93, 80, 161, 0.616);
+}
+.inputEmail[type="number"]:focus {
+  outline: none;
+  border: 2px double rgba(93, 80, 161, 0.616);
+}
+.inputEmail[type="number"]::-webkit-inner-spin-button,
+.inputEmail[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+.inputEmail[type="text"]:focus {
+  outline: none;
+  border: 2px double rgba(93, 80, 161, 0.616);
+}
+.inputEmail[type="password"]:focus {
+  outline: none;
+  border: 2px double rgba(93, 80, 161, 0.616);
+}
+.divForgot {
+  width: 100%;
+  position: relative;
+  text-align: end;
+}
+.divButton {
+  width: 100%;
+  border-radius: 7px;
+}
+.button {
+  width: 100%;
+  height: 40px;
+  border: none;
+  color: white;
+  background-color: rgba(251, 176, 23, 1);
+  border-radius: 7px;
+}
+.divRegister {
+  position: relative;
+  text-align: center;
+}

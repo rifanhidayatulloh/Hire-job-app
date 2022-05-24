@@ -1,0 +1,9 @@
+.mainContent {
+  background-color: white;
+  border-radius: 7px;
+  margin-bottom: 5px;
+  width: 107%;
+  height: auto;
+  position: relative;
+  padding: 10px 0px;
+}

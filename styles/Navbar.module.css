@@ -1,0 +1,28 @@
+.navContent {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  /* background-color: aqua; */
+}
+
+/* Left Content */
+.leftContent {
+  position: relative;
+  left: 115px;
+}
+
+/* Right Content */
+.rightContent {
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  right: 115px;
+}
+.ul {
+  list-style-type: none;
+}
+.imageProfile {
+  object-fit: cover;
+  border-radius: 17px;
+  cursor: pointer;
+}

@@ -1,0 +1,24 @@
+.footer {
+  background-color: rgba(94, 80, 161, 1);
+  color: white;
+  height: 42vh;
+  position: relative;
+}
+.footerContent {
+  position: relative;
+  top: 30px;
+}
+.image {
+  margin-bottom: 25px;
+}
+.text {
+  width: 30%;
+  margin-bottom: 30px;
+}
+.end {
+  border-top: 2px double rgba(255, 255, 255, 1);
+  padding-top: 10px;
+}
+.emaiPhone {
+  text-align: right;
+}

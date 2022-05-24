@@ -1,0 +1,87 @@
+.mainContent {
+  background-color: white;
+  border-radius: 7px;
+  margin-bottom: 5px;
+  width: 115%;
+  height: auto;
+  position: relative;
+  padding: 20px 0px;
+}
+
+.divImage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.image {
+  object-fit: cover;
+  border-radius: 50px;
+}
+.name {
+  font-size: larger;
+  font-weight: 600;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+.profession {
+  font-size: medium;
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
+.divLocation {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+.address {
+  font-size: large;
+  color: #9ea0a5;
+}
+.work {
+  font-size: large;
+  color: #9ea0a5;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+.divButtton {
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+.buttonHire {
+  height: 40px;
+  width: 90%;
+  background-color: #5e50a1;
+  border: none;
+  border-radius: 9px;
+  top: 5px;
+  color: white;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contentSkil {
+  margin-left: 10px;
+}
+.mainSkill {
+  font-size: larger;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.divSkill {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+.skill {
+  background-color: rgba(251, 176, 23, 0.6);
+  width: auto;
+  padding: 3px 11px;
+  margin-right: 9px;
+  border-radius: 5px;
+  border: 1px solid #fbb017;
+  cursor: pointer;
+}
