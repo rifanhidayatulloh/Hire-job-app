@@ -70,6 +70,18 @@
   border-radius: 7px;
   border: 1px double rgba(226, 229, 237, 1);
 }
+.inputEmail[type="password"] {
+  padding-left: 10px;
+}
+.inputEmail[type="number"] {
+  padding-left: 10px;
+}
+.inputEmail[type="text"] {
+  padding-left: 10px;
+}
+.inputEmail[type="email"] {
+  padding-left: 10px;
+}
 .inputEmail[type="email"]:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
@@ -109,5 +121,5 @@
 }
 .divRegister {
   position: relative;
-  text-align: center;
+  display: flex;
 }

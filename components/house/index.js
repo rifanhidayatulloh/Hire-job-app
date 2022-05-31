@@ -8,27 +8,8 @@ import cookie from "js-cookie";
 import styles from "../../styles/CardHouse.module.css";
 
 const HouseCard = (props) => {
-  const [loading, setLoading] = useState(true);
-  const token = cookie.get("token");
-  const config = {
-    headers: { token },
-  };
-  const [data, setData] = useState([]);
-  // console.log(data.data.map((e) => e.skills));
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4000/skill/${props.userId}`, config)
-      .then((response) => {
-        setLoading(false);
-        setData(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoading(true);
-      });
-  }, []);
+  const [data, setData] = useState(props);
+  const isError = data.skills;
 
   return (
     <>
@@ -43,8 +24,8 @@ const HouseCard = (props) => {
               <div className={`col-2 ${styles.leftContent}`}>
                 <Image
                   className={styles.image}
-                  src="/profile-default.png"
-                  // src={`http://localhost:4000/public/users/${props.photo}`}
+                  // src="/profile-default.png"
+                  src={`http://localhost:3501/users/${props.photo}`}
                   width={105}
                   height={105}
                 />
@@ -54,7 +35,9 @@ const HouseCard = (props) => {
               <div className={`col-7 ${styles.centerContent}`}>
                 <div>
                   <div className={styles.name}>{props.nama}</div>
-                  <div className={styles.profession}>Web developer</div>
+                  <div className={styles.profession}>
+                    {!data.jobDesk ? <div></div> : data.jobDesk}
+                  </div>
                   <div className={styles.divLocation}>
                     <div style={{ marginRight: "5px" }}>
                       <Image
@@ -65,37 +48,30 @@ const HouseCard = (props) => {
                         // onError
                       />
                     </div>
-                    <div className={styles.address}>Jakarta</div>
+                    <div className={styles.address}>{data.workplace}</div>
                   </div>
-                  {/* <div className={styles.divSkill}>
-                    <div className={styles.skill}>php </div>
-                    <div className={styles.skill}>html </div>
-                    <div className={styles.skill}>css</div>
-                  </div> */}
 
-                  {loading ? (
-                    <div className={styles.divSkill}>
-                      <div>Loading....</div>
-                    </div>
-                  ) : (
-                    <div>
-                      {data.data.map((e, i) => {
-                        <div key={i} className={styles.divSkill}>
-                          <div className={styles.skill}>{e.skills}</div>
-                        </div>;
-                      })}
-                    </div>
-                  )}
+                  <div className={styles.divSkill}>
+                    {!isError ? (
+                      <div></div>
+                    ) : (
+                      data.skills.map((e, i) => (
+                        <div key={i} className={styles.skill}>
+                          {e}
+                        </div>
+                      ))
+                    )}
+                  </div>
                 </div>
               </div>
 
               {/* End */}
               <div className={`col-3 ${styles.rightContent}`}>
-                <button className={styles.buttonSearch}>
-                  <Link href={`/profile/${props.userId}`}>
+                <Link href={`/profile/${props.userId}`}>
+                  <button className={styles.buttonSearch}>
                     <div>Lihat Profile</div>
-                  </Link>
-                </button>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

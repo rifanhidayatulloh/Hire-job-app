@@ -1,0 +1,64 @@
+.navContent {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  /* background-color: aqua; */
+}
+
+/* Left Content */
+.leftContent {
+  display: flex;
+  position: relative;
+  left: 115px;
+  align-items: center;
+}
+.divImage {
+  margin-right: 70px;
+}
+.home {
+  display: flex;
+  align-items: center;
+}
+.buttonHome {
+  border: none;
+  background-color: transparent;
+  color: #5e50a1;
+}
+
+/* Right Content */
+.rightContent {
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  right: 115px;
+}
+.divMasuk {
+  margin-right: 23px;
+}
+.buttonMasuk {
+  border: 2px double #5e50a1;
+  background-color: transparent;
+  border-radius: 7px;
+  color: #5e50a1;
+  padding: 0px 10px;
+}
+.divDaftar {
+  margin-right: 23px;
+}
+.buttonDaftar {
+  border: none;
+  background-color: #5e50a1;
+  border-radius: 7px;
+  color: white;
+  padding: 2px 15px;
+}
+.divProfile {
+  border: none;
+}
+.buttonProfile {
+  border: none;
+  background-color: #5e50a1;
+  border-radius: 7px;
+  color: white;
+  padding: 2px 15px;
+}

@@ -11,7 +11,7 @@ import styles from "../../../styles/RegisterWork.module.css";
 const onRegister = (data) => {
   return new Promise((resolve, reject) => {
     axios
-      .post(`http://localhost:4000/auth/register`, data)
+      .post(`http://localhost:3501/auth/register`, data)
       .then((res) => {
         resolve(res.data);
       })
@@ -141,7 +141,7 @@ const RegisterWork = (props) => {
                     Email
                   </label>
                   <input
-                    type="text"
+                    type="email"
                     name="email"
                     id="email"
                     placeholder=" Masukan email"
@@ -225,19 +225,36 @@ const RegisterWork = (props) => {
               </form>
 
               <div className={styles.divRegister}>
-                <p style={{ color: "rgba(31, 42, 54, 1)" }}>
-                  Anda sudah punya akun?{" "}
-                  <Link href="/login">
-                    <span
-                      style={{
-                        color: "rgba(251, 176, 23, 1)",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Masuk disini
-                    </span>
-                  </Link>
-                </p>
+                <div style={{ marginRight: "auto" }}>
+                  <p style={{ color: "rgba(31, 42, 54, 1)" }}>
+                    Anda sudah punya akun?{" "}
+                    <Link href="/login">
+                      <span
+                        style={{
+                          color: "rgba(251, 176, 23, 1)",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Masuk disini
+                      </span>
+                    </Link>
+                  </p>
+                </div>
+                <div>
+                  <p style={{ color: "rgba(31, 42, 54, 1)" }}>
+                    Daftar sebagai company?{" "}
+                    <Link href="/register/company">
+                      <span
+                        style={{
+                          color: "rgba(251, 176, 23, 1)",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Klick disini
+                      </span>
+                    </Link>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

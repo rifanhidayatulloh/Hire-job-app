@@ -1,0 +1,272 @@
+.section {
+  background-color: #e5e5e5;
+}
+.mainContent {
+  height: 400vh;
+  position: relative;
+  top: 60px;
+}
+.background {
+  height: 300px;
+  width: 100%;
+  background-color: #5e50a1;
+  position: relative;
+}
+
+/* Main */
+.content {
+  position: absolute;
+  top: 90px;
+  width: 100%;
+  display: flex;
+}
+
+/* Left */
+.leftContent {
+  background-color: white;
+  border-radius: 7px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  position: relative;
+  padding: 20px 0px;
+}
+
+.divImage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.image {
+  object-fit: cover;
+  border-radius: 50px;
+}
+.divEditImage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.buttonEdit {
+  width: auto;
+  height: auto;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  color: #9ea0a5;
+  align-items: center;
+  justify-content: center;
+}
+.imageEdit {
+  margin-right: 10px;
+  position: relative;
+  display: flex;
+}
+.divTextEdit {
+  font-size: larger;
+}
+.name {
+  font-size: larger;
+  font-weight: 600;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+.profession {
+  font-size: medium;
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
+.divLocation {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+.address {
+  font-size: large;
+  color: #9ea0a5;
+}
+.work {
+  font-size: large;
+  color: #9ea0a5;
+  margin-bottom: 30px;
+  margin-left: 10px;
+}
+.divButtton {
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+.buttonSave {
+  height: 40px;
+  width: 90%;
+  background-color: #5e50a1;
+  border: none;
+  border-radius: 9px;
+  top: 5px;
+  color: white;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.buttonCancle {
+  height: 40px;
+  width: 90%;
+  background-color: transparent;
+  border: 2px double #5e50a1;
+  border-radius: 9px;
+  top: 5px;
+  color: #5e50a1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --------------Right------------------- */
+.rightContent {
+  background-color: white;
+  border-radius: 7px;
+  margin-bottom: 20px;
+  width: 107%;
+  height: auto;
+  position: relative;
+  padding: 10px 0px;
+}
+/* ---------------------------- */
+.dataDiri {
+  border-bottom: 2px solid #c4c4c4;
+  padding: 10px 0px 10px 30px;
+  margin-bottom: 20px;
+}
+.divName {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.inputEmail {
+  height: 40px;
+  border-radius: 7px;
+  border: 1px double rgba(226, 229, 237, 1);
+}
+.inputEmail[type="text"] {
+  padding-left: 10px;
+}
+.inputEmail[type="text"]:focus {
+  outline: none;
+  border: 2px double rgba(93, 80, 161, 0.616);
+}
+.inputEmail[type="date"] {
+  padding-left: 10px;
+}
+.inputEmail[type="date"]:focus {
+  outline: none;
+  border: 2px double rgba(93, 80, 161, 0.616);
+}
+.inputEmail[type="url"] {
+  padding-left: 10px;
+}
+.inputEmail[type="url"]:focus {
+  outline: none;
+  border: 2px double rgba(93, 80, 161, 0.616);
+}
+.textArea {
+  resize: none;
+  border: none;
+  height: 200px;
+  border-radius: 7px;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: medium;
+  border: 1px double rgba(226, 229, 237, 1);
+}
+.textArea:focus {
+  outline: none;
+  border: 2px double rgba(93, 80, 161, 0.616);
+}
+.divADD {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 20px;
+  padding: 0px 30px;
+}
+.buttonADD {
+  height: 50px;
+  border: 2px double #fbb017;
+  background-color: white;
+  color: #fbb017;
+  border-radius: 7px;
+}
+/* ------------------porto--------- */
+.divPorto {
+  padding: 5px 21px;
+  margin-bottom: 12px;
+}
+.porto {
+  font-size: medium;
+  color: #9ea0a5;
+  margin-bottom: 10px;
+}
+.divRadio {
+  display: flex;
+  align-items: center;
+}
+.borderRadio {
+  border: none;
+  width: 170px;
+  height: 30px;
+  display: flex;
+  position: relative;
+  margin-right: 20px;
+  align-items: center;
+  font-size: medium;
+  color: #9ea0a5;
+  /* background-color: aqua; */
+}
+.inputRadio {
+  margin-right: 10px;
+}
+.inputPorto {
+  width: 100%;
+  height: 300px;
+  border: 2px dashed #9ea0a5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.buttonPorto {
+  border: none;
+  cursor: pointer;
+  /* background-color: aqua; */
+}
+.imagePorto {
+  object-fit: cover;
+}
+/* ------------------skills----------- */
+.formSkills {
+  display: flex;
+  align-self: center;
+}
+.divSelect {
+  padding: 0px 20px;
+  margin-bottom: 18px;
+}
+.selectSkills {
+  max-width: 100%;
+}
+.buttonSkills {
+  width: 15%;
+  height: 40px;
+  border: none;
+  border-radius: 7px;
+  background-color: #fbb017;
+  color: white;
+  font-size: medium;
+}

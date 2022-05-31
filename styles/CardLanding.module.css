@@ -1,0 +1,47 @@
+.mainContent {
+  background-color: white;
+  border-radius: 7px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  position: relative;
+  padding: 20px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.detailUser {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.divImage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.image {
+  object-fit: cover;
+  border-radius: 50px;
+}
+.name {
+  font-size: larger;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.profession {
+  font-size: medium;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  color: #9ea0a5;
+}
+.work {
+  font-size: large;
+  margin-bottom: 20px;
+}

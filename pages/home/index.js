@@ -3,20 +3,23 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import axios from "axios";
+import Head from "next/head";
+import jwtDecode from "jwt-decode";
 
 import styles from "../../styles/House.module.css";
 import styless from "../../styles/CardHouse.module.css";
-import Navbar from "../../components/navbar";
-import Footer from "../../components/footer";
 import Card from "../../components/house/index";
 
 export async function getServerSideProps(context) {
+  const { search, sort, limit, page } = context.query;
+  const getSearch = !search ? "" : search;
+  const getSort = !sort ? "fullname" : sort;
   const { token } = context.req.cookies;
   const apiUsers = async () => {
     try {
       const response = await axios({
         method: "get",
-        url: `http://localhost:4000/users`,
+        url: `http://localhost:3501/users?limit=&page=&search=${getSearch}&sortField=${getSort}&sortType=`,
         headers: {
           token,
         },
@@ -36,16 +39,29 @@ export async function getServerSideProps(context) {
     props: {
       data: [],
       getUsers: await apiUsers(),
+      getSearch,
     },
   };
 }
 
 const Home = (props) => {
+  const router = useRouter();
   const [data, setData] = useState(props.getUsers.data);
-  // console.log(props.getUsers.data.data);
+  const [form, setForm] = useState("");
+  const [forms, setForms] = useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    // router.push(`/home?search=${form}&sort=${forms}`); //window.location
+    window.location.href = `/home?search=${form}&sort=${forms}`;
+  };
+
   return (
     <>
-      <Navbar />
+      <Head>
+        <title>Home</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
       <section className={`container-fluid ${styles.section}`}>
         <div className={`col ${styles.mainContent}`}>
@@ -59,29 +75,40 @@ const Home = (props) => {
           <div className="row" style={{ margin: "35px 0px" }}>
             <div className="col-1"></div>
             <div className={`col-10`}>
-              <div className={`bg-white ${styles.divSearch}`}>
-                <input
-                  placeholder="  Search for any skill"
-                  className={styles.search}
-                  type="text"
-                />
-                <div className={styles.iconSearch}>
-                  <Image src="/iconSearch.svg" width={50} height={30} />
+              <form onSubmit={(e) => onSubmit(e)}>
+                <div className={`bg-white ${styles.divSearch}`}>
+                  <input
+                    value={form}
+                    onChange={(e) => setForm(e.target.value)}
+                    placeholder="  Search for any skill"
+                    className={styles.search}
+                    type="text"
+                    id="search"
+                  />
+                  <div className={styles.iconSearch}>
+                    <Image src="/iconSearch.svg" width={50} height={30} />
+                  </div>
+                  <div className={styles.divLine}></div>
+                  <div className={styles.divSort}>
+                    <select
+                      onChange={(e) => setForms(e.target.value)}
+                      name=""
+                      id=""
+                      className={styles.sort}
+                    >
+                      <option value="null" disabled="disabled" selected>
+                        Sort
+                      </option>
+                      <option value="fullname">Nama</option>
+                      <option value="workplace">Lokasi</option>
+                      <option value="job_desk">Job</option>
+                    </select>
+                  </div>
+                  <button type="submit" className={styles.buttonSearch}>
+                    <div>Search</div>
+                  </button>
                 </div>
-                <div className={styles.divLine}></div>
-                <div className={styles.divSort}>
-                  <select name="" id="" className={styles.sort}>
-                    <option value="null" disabled="disabled" selected>
-                      Sort
-                    </option>
-                    <option value="name">Nama</option>
-                    <option value="skill">Skill</option>
-                  </select>
-                </div>
-                <button className={styles.buttonSearch}>
-                  <div>Search</div>
-                </button>
-              </div>
+              </form>
             </div>
             <div className="col-1"></div>
           </div>
@@ -89,26 +116,57 @@ const Home = (props) => {
             <div className="col-1"></div>
             <div className="col-10">
               {/* ------------------------------Card------------------------------------------------- */}
-              {props.getUsers == "" ? (
+              {!data.data ? (
+                <>
+                  <div className={styles.divError}>
+                    <div className={styles.error}>
+                      <h1>Data not found</h1>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div>
+                  {data.data.map((e, i) => (
+                    <div key={i}>
+                      <Card
+                        userId={e.id}
+                        photo={e.photo}
+                        nama={e.fullname}
+                        skills={e.skills}
+                        workplace={e.workplace}
+                        jobDesk={e.job_desk}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* {props.getUsers == "" ? (
                 <div>Loading</div>
               ) : (
                 <div>
                   {data.data.map((e, i) => (
                     <div key={i}>
-                      <Card userId={e.id} photo={e.photo} nama={e.fullname} />
+                      <Card
+                        userId={e.id}
+                        photo={e.photo}
+                        nama={e.fullname}
+                        skills={e.skills}
+                        workplace={e.workplace}
+                      />
                     </div>
                   ))}
                 </div>
-              )}
+              )} */}
             </div>
             <div className="col-1"></div>
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 };
+
+Home.layout = "MainLayout";
 
 export default Home;

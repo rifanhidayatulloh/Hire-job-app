@@ -70,6 +70,12 @@
   border-radius: 7px;
   border: 1px double rgba(226, 229, 237, 1);
 }
+.inputEmail[type="email"] {
+  padding-left: 10px;
+}
+.inputEmail[type="password"] {
+  padding-left: 10px;
+}
 .inputEmail[type="email"]:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);

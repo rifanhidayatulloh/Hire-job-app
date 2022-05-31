@@ -3,38 +3,83 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Head from "next/head";
 import axios from "axios";
+import Link from "next/link";
+import swal from "sweetalert2";
 
 import styles from "../../../styles/RegisterComp.module.css";
 
-export async function getServerSideProps(context) {
-  const loginAPI = async () => {
-    try {
-      const response = await axios({
-        method: "get",
-        url: `https://jsonplaceholder.typicode.com/users`,
+const onRegisterComp = (data) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`http://localhost:3501/auth/register`, data)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err);
       });
-      return {
-        data: response.data,
-        error: false,
-      };
-    } catch (error) {
-      return {
-        data: [],
-        error: true,
-      };
+  });
+};
+
+const RegisterWork = () => {
+  const router = useRouter();
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    phone: "",
+    newPassword: "",
+    company: "",
+    position: "",
+    level: 1,
+  });
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      form.email == "" ||
+      form.name == "" ||
+      form.password == "" ||
+      form.phone == "" ||
+      form.newPassword === "" ||
+      form.position == "" ||
+      form.company == ""
+    ) {
+      swal.fire({
+        title: "Error!",
+        text: "All field must be filled!",
+        icon: "error",
+      });
+    } else if (form.password !== form.newPassword) {
+      swal.fire({
+        title: "Error!",
+        text: "Oopss... check your password",
+        icon: "error",
+      });
+    } else {
+      onRegisterComp(form)
+        .then((res) => {
+          swal
+            .fire({
+              title: "Success!",
+              text: "Registrasi Success, Please check your email for confirm",
+              icon: "success",
+            })
+            .then(() => {
+              router.push("/login");
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+          swal.fire({
+            icon: "error",
+            title: "Ooops... Register Failed",
+            text: "Register Failed",
+          });
+        });
     }
   };
-  return {
-    props: {
-      data: [],
-      api1: await loginAPI(),
-    },
-  };
-}
 
-const RegisterComp = (props) => {
-  const router = useRouter();
-  const [data, setData] = useState(props);
   return (
     <>
       <Head>
@@ -58,8 +103,209 @@ const RegisterComp = (props) => {
               </h1>
             </div>
           </div>
-          <div className={`col-7 `}>
-            <h1>Register company</h1>
+
+          {/* Right Content */}
+          <div className={`col-7 ${styles.rightContent}`}>
+            <div className={`${styles.rightMain}`}>
+              <h3>Halo, Pewpeople</h3>
+              <div className={styles.divParagraph}>
+                <p style={{ width: "100%", color: "rgba(70, 80, 92, 1)" }}>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Maiores ea cupiditate rerum veniam.
+                </p>
+              </div>
+
+              <form onSubmit={(e) => onSubmit(e)}>
+                <div style={{ marginBottom: "10px" }}>
+                  <label
+                    htmlFor="name"
+                    style={{
+                      marginBottom: "7px",
+                      color: "rgba(158, 160, 165, 1)",
+                    }}
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder=" Masukan nama panjang"
+                    className={styles.inputEmail}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  />
+                </div>
+                <div style={{ marginBottom: "10px" }}>
+                  <label
+                    htmlFor="email"
+                    style={{
+                      marginBottom: "7px",
+                      color: "rgba(158, 160, 165, 1)",
+                    }}
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder=" Masukan email"
+                    className={styles.inputEmail}
+                    onChange={(e) =>
+                      setForm({ ...form, email: e.target.value })
+                    }
+                  />
+                </div>
+                <div style={{ marginBottom: "10px" }}>
+                  <label
+                    htmlFor="company"
+                    style={{
+                      marginBottom: "7px",
+                      color: "rgba(158, 160, 165, 1)",
+                    }}
+                  >
+                    Perusahaan
+                  </label>
+                  <input
+                    type="text"
+                    name="company"
+                    id="company"
+                    placeholder=" Masukan nama perusahaan"
+                    className={styles.inputEmail}
+                    onChange={(e) =>
+                      setForm({ ...form, company: e.target.value })
+                    }
+                  />
+                </div>
+                <div style={{ marginBottom: "10px" }}>
+                  <label
+                    htmlFor="jabatan"
+                    style={{
+                      marginBottom: "7px",
+                      color: "rgba(158, 160, 165, 1)",
+                    }}
+                  >
+                    Jabatan
+                  </label>
+                  <input
+                    type="text"
+                    name="jabatan"
+                    id="jabatan"
+                    placeholder=" Posisi di perusahaan Anda"
+                    className={styles.inputEmail}
+                    onChange={(e) =>
+                      setForm({ ...form, position: e.target.value })
+                    }
+                  />
+                </div>
+                <div style={{ marginBottom: "10px" }}>
+                  <label
+                    htmlFor="phone"
+                    style={{
+                      marginBottom: "7px",
+                      color: "rgba(158, 160, 165, 1)",
+                    }}
+                  >
+                    No Handphone
+                  </label>
+                  <input
+                    type="number"
+                    name="phone"
+                    id="phone"
+                    placeholder=" Masukan no handphone"
+                    className={styles.inputEmail}
+                    onChange={(e) =>
+                      setForm({ ...form, phone: e.target.value })
+                    }
+                  />
+                </div>
+                <div style={{ marginBottom: "10px" }}>
+                  <label
+                    htmlFor="password"
+                    style={{
+                      marginBottom: "7px",
+                      color: "rgba(158, 160, 165, 1)",
+                    }}
+                  >
+                    Kata Sandi
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder=" Masukan kata sandi"
+                    className={styles.inputEmail}
+                    onChange={(e) =>
+                      setForm({ ...form, password: e.target.value })
+                    }
+                  />
+                </div>
+                <div style={{ marginBottom: "20px" }}>
+                  <label
+                    htmlFor="confirm"
+                    style={{
+                      marginBottom: "7px",
+                      color: "rgba(158, 160, 165, 1)",
+                    }}
+                  >
+                    Konfirmasi kata Sandi
+                  </label>
+                  <input
+                    type="password"
+                    name="confirm"
+                    id="confirm"
+                    placeholder=" Masukan konfirmasi kata sandi"
+                    className={styles.inputEmail}
+                    onChange={(e) =>
+                      setForm({ ...form, newPassword: e.target.value })
+                    }
+                  />
+                </div>
+                <div
+                  className={styles.divButton}
+                  style={{ marginBottom: "10px" }}
+                >
+                  {/* <Link href="/login"> */}
+                  <button type="submit" className={styles.button}>
+                    Masuk
+                  </button>
+                  {/* </Link> */}
+                </div>
+              </form>
+
+              <div className={styles.divRegister}>
+                <div style={{ marginRight: "auto" }}>
+                  <p style={{ color: "rgba(31, 42, 54, 1)" }}>
+                    Anda sudah punya akun?{" "}
+                    <Link href="/login">
+                      <span
+                        style={{
+                          color: "rgba(251, 176, 23, 1)",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Masuk disini
+                      </span>
+                    </Link>
+                  </p>
+                </div>
+                <div>
+                  <p style={{ color: "rgba(31, 42, 54, 1)" }}>
+                    Daftar sebagai worker?{" "}
+                    <Link href="/register/worker">
+                      <span
+                        style={{
+                          color: "rgba(251, 176, 23, 1)",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Klick disini
+                      </span>
+                    </Link>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -67,4 +313,4 @@ const RegisterComp = (props) => {
   );
 };
 
-export default RegisterComp;
+export default RegisterWork;

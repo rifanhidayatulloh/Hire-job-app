@@ -11,9 +11,10 @@ import styles from "../../styles/Login.module.css";
 const onLogin = (data) => {
   return new Promise((resolve, reject) => {
     axios
-      .post(`http://localhost:4000/auth/login`, data)
+      .post(`http://localhost:3501/auth/login`, data)
       .then((res) => {
-        document.cookie = `token=${res.data.token};path=/`;
+        document.cookie = `token=${res.data.token}; path=/`;
+        document.cookie = `idUser=${res.data.data}; path=/`;
         resolve(res.data);
       })
       .catch((err) => {
@@ -47,7 +48,7 @@ const Login = () => {
               icon: "success",
             })
             .then(() => {
-              router.push("/home");
+              router.push("/");
             });
         })
         .catch((err) => {

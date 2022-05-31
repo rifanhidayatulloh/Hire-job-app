@@ -2,7 +2,7 @@
   background-color: #e5e5e5;
 }
 .mainContent {
-  height: 150vh;
+  height: 145vh;
   position: relative;
   top: 60px;
 }
@@ -20,12 +20,29 @@
 }
 .search {
   height: 60px;
-  width: 72%;
+  width: 70%;
   border-radius: 9px;
   border: none;
 }
+.divError {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+}
+.error {
+  width: 98%;
+  background-color: white;
+  padding: 0px 0px;
+  text-align: center;
+  border-radius: 9px;
+}
+.search[type="text"] {
+  padding-left: 20px;
+}
 .search[type="text"]:focus {
   outline: none;
+  background-color: transparent;
 }
 .iconSearch {
   cursor: pointer;
@@ -42,7 +59,7 @@
 .divSort {
   position: relative;
   top: 15px;
-  margin-right: 30px;
+  margin-right: 40px;
 }
 .sort {
   border: none;

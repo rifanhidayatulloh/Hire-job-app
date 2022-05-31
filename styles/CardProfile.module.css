@@ -62,6 +62,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 .contentSkil {
   margin-left: 10px;
