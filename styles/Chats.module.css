@@ -1,0 +1,91 @@
+.section {
+  background-color: #e5e5e5;
+}
+.mainContent {
+  height: 110vh;
+  position: relative;
+  top: 60px;
+}
+.background {
+  height: 300px;
+  width: 100%;
+  background-color: #5e50a1;
+  position: relative;
+}
+
+/* Main */
+.content {
+  position: absolute;
+  top: 90px;
+  width: 100%;
+  display: flex;
+}
+
+/* --------------Left------------- */
+.leftContent {
+  background-color: white;
+  height: 75vh;
+  border-radius: 10px;
+  padding: 15px 0px;
+}
+.divChat {
+  /* margin-left: 10px; */
+  border-bottom: 2px double gray;
+  margin-bottom: 10px;
+  padding: 10px 0px;
+}
+.leftMain {
+  padding: 10px 15px;
+  position: relative;
+}
+.divLeftImage {
+  margin-bottom: 10px;
+  position: relative;
+  display: flex;
+  cursor: pointer;
+}
+.leftImage {
+  border-radius: 25px;
+  position: relative;
+  display: flex;
+  cursor: pointer;
+}
+
+/* --------------Right------------- */
+.rightContent {
+  background-color: white;
+  height: 75vh;
+  border-radius: 10px;
+  padding: 15px 0px;
+}
+.divMainRight {
+  border-bottom: 2px double gray;
+  padding: 0px 10px;
+  padding-bottom: 5px;
+  width: 100%;
+  margin-left: 0px;
+}
+.divRightImage {
+  margin-bottom: 10px;
+  position: relative;
+  display: flex;
+  cursor: pointer;
+}
+.rightImage {
+  border-radius: 25px;
+  position: relative;
+  display: flex;
+  cursor: pointer;
+}
+.rightMain {
+  padding: 10px 10px;
+  padding-left: 27px;
+}
+.ballon {
+  border-radius: 5px 50px 30px;
+  padding: 10px 10px;
+  padding-left: 30px;
+  width: max-content;
+  max-width: 50%;
+  border: 2px double #5e50a1;
+}

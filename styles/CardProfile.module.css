@@ -64,6 +64,19 @@
   align-items: center;
   margin-bottom: 20px;
 }
+.buttonLogout {
+  height: 40px;
+  width: 90%;
+  background-color: transparent;
+  border: 2px double #5e50a1;
+  border-radius: 9px;
+  top: 5px;
+  color: #5e50a1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .contentSkil {
   margin-left: 10px;
 }

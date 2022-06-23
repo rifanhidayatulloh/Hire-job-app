@@ -2,7 +2,7 @@
   background-color: #e5e5e5;
 }
 .mainContent {
-  height: 400vh;
+  height: 180vh;
   position: relative;
   top: 60px;
 }
@@ -155,24 +155,38 @@
   border-radius: 7px;
   border: 1px double rgba(226, 229, 237, 1);
 }
-.inputEmail[type='text'] {
+.inputEmail[type="text"] {
   padding-left: 10px;
 }
-.inputEmail[type='text']:focus {
+.inputEmail[type="text"]:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
-.inputEmail[type='date'] {
+.inputEmail[type="date"] {
   padding-left: 10px;
 }
-.inputEmail[type='date']:focus {
+.inputEmail[type="date"]:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
-.inputEmail[type='url'] {
+.inputEmail[type="url"] {
   padding-left: 10px;
 }
-.inputEmail[type='url']:focus {
+.inputEmail[type="url"]:focus {
+  outline: none;
+  border: 2px double rgba(93, 80, 161, 0.616);
+}
+.inputEmail[type="email"] {
+  padding-left: 10px;
+}
+.inputEmail[type="email"]:focus {
+  outline: none;
+  border: 2px double rgba(93, 80, 161, 0.616);
+}
+.inputEmail[type="number"] {
+  padding-left: 10px;
+}
+.inputEmail[type="number"]:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
@@ -187,114 +201,6 @@
   border: 1px double rgba(226, 229, 237, 1);
 }
 .textArea:focus {
-  outline: none;
-  border: 2px double rgba(93, 80, 161, 0.616);
-}
-.divADD {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  margin-bottom: 20px;
-  padding: 0px 30px;
-}
-.buttonADD {
-  height: 50px;
-  border: 2px double #fbb017;
-  background-color: white;
-  color: #fbb017;
-  border-radius: 7px;
-}
-/* ------------------porto--------- */
-.divPorto {
-  padding: 5px 21px;
-  margin-bottom: 12px;
-}
-.porto {
-  font-size: medium;
-  color: #9ea0a5;
-  margin-bottom: 10px;
-}
-.divRadio {
-  display: flex;
-  align-items: center;
-}
-.borderRadio {
-  border: none;
-  width: 170px;
-  height: 30px;
-  display: flex;
-  position: relative;
-  margin-right: 20px;
-  align-items: center;
-  font-size: medium;
-  color: #9ea0a5;
-  /* background-color: aqua; */
-}
-.inputRadio {
-  margin-right: 10px;
-}
-.inputPorto {
-  width: 100%;
-  height: 300px;
-  border: 2px dashed #9ea0a5;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* background-color: aqua; */
-}
-.buttonPorto {
-  border: none;
-  cursor: pointer;
-  /* background-color: aqua; */
-}
-.imagePorto {
-  object-fit: cover;
-}
-.inputImagePorto {
-  height: 40px;
-  width: 500px;
-  border-radius: 7px;
-  border: 1px double rgba(226, 229, 237, 1);
-}
-.inputImagePorto[type='text'] {
-  padding-left: 10px;
-}
-.inputImagePorto[type='text']:focus {
-  outline: none;
-  border: 2px double rgba(93, 80, 161, 0.616);
-}
-/* ------------------skills----------- */
-.formSkills {
-  display: flex;
-  align-self: center;
-}
-.divSelect {
-  padding: 0px 20px;
-  margin-bottom: 18px;
-}
-.selectSkills {
-  max-width: 100%;
-}
-.buttonSkills {
-  width: 15%;
-  height: 40px;
-  border: none;
-  border-radius: 7px;
-  background-color: #fbb017;
-  color: white;
-  font-size: medium;
-}
-.inputSkill {
-  width: 100%;
-  height: 40px;
-  border-radius: 7px;
-  border: 1px double rgba(226, 229, 237, 1);
-}
-.inputSkill[type='text'] {
-  padding-left: 10px;
-}
-.inputSkill[type='text']:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import axios from "axios";
-import Head from "next/head";
-import jsCookie from "js-cookie";
-import jwtDecode from "jwt-decode";
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import axios from 'axios';
+import Head from 'next/head';
+import jsCookie from 'js-cookie';
+import jwtDecode from 'jwt-decode';
 
-import styles from "../../../styles/Profile.module.css";
-import CardProfile from "../../../components/cardProfile/index";
-import Portofolio from "../../../components/portofolio/index";
+import styles from '../../../styles/Profile.module.css';
+import CardProfile from '../../../components/cardProfile/index';
+import Portofolio from '../../../components/portofolio/index';
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
@@ -23,60 +23,60 @@ export async function getServerSideProps(context) {
   const apiUsersId = async () => {
     try {
       const response = await axios({
-        method: "get",
-        url: `http://localhost:3501/users/${id}`,
+        method: 'get',
+        url: `${process.env.NEXT_PUBLIC_API_URL}users/${id}`,
         headers: {
-          token,
-        },
+          token
+        }
       });
       return {
         data: response.data,
-        error: false,
+        error: false
       };
     } catch (error) {
       return {
         data: [],
-        error: true,
+        error: true
       };
     }
   };
   const apiPorto = async () => {
     try {
       const response = await axios({
-        method: "get",
-        url: `http://localhost:3501/portofolio/detail/${id}`,
+        method: 'get',
+        url: `${process.env.NEXT_PUBLIC_API_URL}portofolio/detail/${id}`,
         headers: {
-          token,
-        },
+          token
+        }
       });
       return {
         data: response.data,
-        error: false,
+        error: false
       };
     } catch (error) {
       return {
         data: [],
-        error: true,
+        error: true
       };
     }
   };
   const apiExperience = async () => {
     try {
       const response = await axios({
-        method: "get",
-        url: `http://localhost:3501/experience/${id}`,
+        method: 'get',
+        url: `${process.env.NEXT_PUBLIC_API_URL}experience/${id}`,
         headers: {
-          token,
-        },
+          token
+        }
       });
       return {
         data: response.data,
-        error: false,
+        error: false
       };
     } catch (error) {
       return {
         data: [],
-        error: true,
+        error: true
       };
     }
   };
@@ -88,11 +88,13 @@ export async function getServerSideProps(context) {
       getExperience: await apiExperience(),
       idUser,
       getLevel,
-    },
+      id,
+      token
+    }
   };
 }
 
-const Profile = (props) => {
+const Profile = props => {
   const [data, setData] = useState(props.getUsers.data.data);
   const [porto, setPorto] = useState(props.getPorto.data.data);
   const [experience, setExperience] = useState(props.getExperience.data.data);
@@ -121,10 +123,17 @@ const Profile = (props) => {
                 about={data.about}
                 level={props.getLevel}
                 idUser={props.idUser}
+                token={props.token}
               />
             </div>
             <div className="col-7 ">
-              <Portofolio sendPorto={porto} sendExp={experience} />
+              <Portofolio
+                token={props.token}
+                idUser={props.idUser}
+                idParams={props.id}
+                sendPorto={porto}
+                sendExp={experience}
+              />
             </div>
             <div className="col-1"></div>
           </div>
@@ -134,6 +143,6 @@ const Profile = (props) => {
   );
 };
 
-Profile.layout = "MainLayout";
+Profile.layout = 'MainLayout';
 
 export default Profile;

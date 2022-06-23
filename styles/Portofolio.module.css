@@ -7,3 +7,53 @@
   position: relative;
   padding: 10px 0px;
 }
+
+.divImagePorto {
+  position: relative;
+}
+.divDeletePorto {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+  background-color: aliceblue;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  z-index: 999;
+}
+.delete {
+  transform: rotate(45deg);
+  z-index: 999;
+}
+
+/* -----------Experience--------- */
+.mainExp {
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-bottom: 30px;
+  margin-right: 20px;
+}
+.contentExp {
+  display: flex;
+  margin-bottom: 20px;
+  border: 1px solid rgba(226, 229, 237, 1);
+  border-radius: 10px;
+}
+.divdeleteExp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+.deleteExp {
+  width: 100px;
+  height: 40px;
+  border-radius: 7px;
+  border: 2px double #5e50a1;
+  color: #5e50a1;
+  background-color: transparent;
+}

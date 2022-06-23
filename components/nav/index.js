@@ -2,13 +2,20 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import axios from "axios";
 import jsCookie from "js-cookie";
+import jwtDecode from "jwt-decode";
 
 import styles from "../../styles/Nav.module.css";
 
 const Nav = () => {
   const id = jsCookie.get("idUser");
+  const token = jsCookie.get("token");
+  let level;
+  if (token) {
+    const getToken = jwtDecode(token);
+    level = getToken.level;
+  }
+
   const [backgroundColor, setBackgroundColor] = useState("");
   const [shadow, setShadow] = useState("");
   const [isDisplay, setIsDisplay] = useState("");
@@ -80,14 +87,25 @@ const Nav = () => {
                   <button className={styles.buttonDaftar}>Daftar</button>
                 </Link>
               </div>
-              <div
-                className={`${styles.divProfile}`}
-                style={{ display: `${isDisplay}` }}
-              >
-                <Link href={`/profile/${id}`}>
-                  <button className={styles.buttonProfile}>Profile</button>
-                </Link>
-              </div>
+              {level === 0 ? (
+                <div
+                  className={`${styles.divProfile}`}
+                  style={{ display: `${isDisplay}` }}
+                >
+                  <Link href={`/profile/${id}`}>
+                    <button className={styles.buttonProfile}>Profile</button>
+                  </Link>
+                </div>
+              ) : (
+                <div
+                  className={`${styles.divProfile}`}
+                  style={{ display: `${isDisplay}` }}
+                >
+                  <Link href={`/company/${id}`}>
+                    <button className={styles.buttonProfile}>Profile</button>
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>

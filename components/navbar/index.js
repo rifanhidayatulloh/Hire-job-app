@@ -1,70 +1,64 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import axios from "axios";
-import jsCookie from "js-cookie";
-import jwtDecode from "jwt-decode";
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import axios from 'axios';
+import jsCookie from 'js-cookie';
+import jwtDecode from 'jwt-decode';
 
-import styles from "../../styles/Navbar.module.css";
+import styles from '../../styles/Navbar.module.css';
 
 const Navbar = () => {
-  const id = jsCookie.get("idUser");
-  const token = jsCookie.get("token");
+  const id = jsCookie.get('idUser');
+  const token = jsCookie.get('token');
 
-  const [backgroundColor, setBackgroundColor] = useState("");
-  const [shadow, setShadow] = useState("");
+  const [backgroundColor, setBackgroundColor] = useState('');
+  const [shadow, setShadow] = useState('');
 
   // ------bg-------
   const changeBackground = () => {
     if (window.scrollY > 0) {
-      setBackgroundColor("light");
-      setShadow("shadow mb-5 bg-body rounded");
+      setBackgroundColor('light');
+      setShadow('shadow mb-5 bg-body rounded');
     } else {
-      setBackgroundColor("");
-      setShadow("");
+      setBackgroundColor('');
+      setShadow('');
     }
   };
 
-  // const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
+  const [photo, setPhoto] = useState(`${process.env.NEXT_PUBLIC_API_URL}users/${users.photo}`);
+  // console.log(`${process.env.NEXT_PUBLIC_API_URL}users/${users.photo}`);
 
   useEffect(() => {
     changeBackground();
-    window.addEventListener("scroll", changeBackground);
+    window.addEventListener('scroll', changeBackground);
 
     axios
-      .get(`http://localhost:3501/users/${id}`, {
+      .get(`${process.env.NEXT_PUBLIC_API_URL}users/${id}`, {
         headers: {
-          token: token,
-        },
+          token: token
+        }
       })
-      .then((response) => {
+      .then(response => {
         // console.log(response.data.data);
         setUsers(response.data.data);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }, []);
 
   return (
     <>
-      <nav
-        className={`container-fluid fixed-top ${shadow}`}
-        backgroundcolor={backgroundColor}
-      >
+      <nav className={`container-fluid fixed-top ${shadow}`} backgroundcolor={backgroundColor}>
         <div className={`row ${styles.navContent}`}>
           {/* Nav left */}
           <div className={`col-6 ${styles.leftContent}`}>
             <Link href="/">
               <div>
-                <Image
-                  style={{ cursor: "pointer" }}
-                  src="/peworldIcon.png"
-                  width={100}
-                  height={35}
-                />
+                <Image style={{ cursor: 'pointer' }} src="/peworldIcon.png" width={100} height={35} />
               </div>
             </Link>
           </div>
@@ -72,44 +66,49 @@ const Navbar = () => {
           <div className={`col-6`}>
             <div className={`${styles.rightContent}`}>
               <ul className={`row ${styles.ul}`}>
-                <li
-                  style={{ position: "relative", top: "15px" }}
-                  className={`col-4`}
-                >
-                  <Image
-                    style={{ cursor: "pointer" }}
-                    src="/lonceng.svg"
-                    width={35}
-                    height={25}
-                  />
+                <li style={{ position: 'relative', top: '15px' }} className={`col-4`}>
+                  <Image style={{ cursor: 'pointer' }} src="/lonceng.svg" width={35} height={25} />
                 </li>
-                <li
-                  style={{ position: "relative", top: "15px" }}
-                  className={`col-4`}
-                >
-                  <Image
-                    style={{ cursor: "pointer" }}
-                    src="/message.svg"
-                    width={35}
-                    height={25}
-                  />
+                <li style={{ position: 'relative', top: '15px' }} className={`col-4`}>
+                  {users.level === 0 ? (
+                    <Link href={`/chat`}>
+                      <Image style={{ cursor: 'pointer' }} src="/message.svg" width={35} height={25} />
+                    </Link>
+                  ) : (
+                    <Image style={{ cursor: 'pointer' }} src="/message.svg" width={35} height={25} />
+                  )}
                 </li>
-                <li
-                  style={{ position: "relative", top: "10px" }}
-                  className={`col-4`}
-                >
-                  <Link href={`/profile/${id}`}>
-                    <div>
-                      <Image
-                        className={styles.imageProfile}
-                        // src="/profile-default.png"
-                        src={`http://localhost:3501/users/${users.photo}`}
-                        width={35}
-                        height={35}
-                      />
-                    </div>
-                  </Link>
-                </li>
+                {users.level === 0 ? (
+                  <li style={{ position: 'relative', top: '10px' }} className={`col-4`}>
+                    <Link href={`/profile/${id}`}>
+                      <div>
+                        <Image
+                          className={styles.imageProfile}
+                          // src="/profile-default.png"
+                          src={`${photo}`}
+                          onError={() => setPhoto('/profile-default.png')}
+                          width={35}
+                          height={35}
+                        />
+                      </div>
+                    </Link>
+                  </li>
+                ) : (
+                  <li style={{ position: 'relative', top: '10px' }} className={`col-4`}>
+                    <Link href={`/company/${id}`}>
+                      <div>
+                        <Image
+                          className={styles.imageProfile}
+                          // src="/profile-default.png"
+                          src={`${photo}`}
+                          onError={() => setPhoto('/profile-default.png')}
+                          width={35}
+                          height={35}
+                        />
+                      </div>
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </div>

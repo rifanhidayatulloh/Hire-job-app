@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import axios from "axios";
-import Head from "next/head";
-import Select from "react-select";
-import swal from "sweetalert2";
-import jsCookie from "js-cookie";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import axios from 'axios';
+import Head from 'next/head';
+import swal from 'sweetalert2';
+import jsCookie from 'js-cookie';
 
-import { stateOptions } from "../../../docs/skill.ts";
-import styles from "../../../styles/EditProfile.module.css";
+import styles from '../../../styles/EditProfile.module.css';
 
 export async function getServerSideProps(context) {
   const { token, idUser } = context.req.cookies;
@@ -17,72 +15,74 @@ export async function getServerSideProps(context) {
   const apiUsersId = async () => {
     try {
       const response = await axios({
-        method: "get",
-        url: `http://localhost:3501/users/${idUser}`,
+        method: 'get',
+        url: `${process.env.NEXT_PUBLIC_API_URL}users/${idUser}`,
         headers: {
-          token,
-        },
+          token
+        }
       });
       return {
         data: response.data,
-        error: false,
+        error: false
       };
     } catch (error) {
       return {
         data: [],
-        error: true,
+        error: true
       };
     }
   };
   return {
     props: {
       data: [],
-      getUsers: await apiUsersId(),
-    },
+      getUsers: await apiUsersId()
+    }
   };
 }
 
-const Profile = (props) => {
+const Profile = props => {
   const router = useRouter();
-  const token = jsCookie.get("token");
+  const token = jsCookie.get('token');
   const [userData, setUserData] = useState(props.getUsers.data.data);
 
+  const [getPhoto, setGetPhoto] = useState(`${process.env.NEXT_PUBLIC_API_URL}users/${userData.photo}`);
+
   const [loading, setLoading] = useState(false);
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState('');
   const [buttonVisibility, setButtonVisibility] = useState(false);
 
-  const photoSubmit = (e) => {
+  const photoSubmit = e => {
     e.preventDefault();
     setLoading(false);
     if (loading == false) {
       setLoading(true);
       const formData = new FormData();
-      formData.append("image", photo);
+      formData.append('image', photo);
       axios
-        .put(`http://localhost:3501/users/update/photo`, formData, {
+        .put(`${process.env.NEXT_PUBLIC_API_URL}users/update/photo`, formData, {
           headers: {
             token: token,
-            "Content-Type": "multipart/form-data",
-          },
+            'Content-Type': 'multipart/form-data'
+          }
         })
-        .then((res) => {
+        .then(res => {
           swal
             .fire({
-              title: "Success!",
-              text: "Success Update photo",
-              icon: "success",
+              title: 'Success!',
+              text: 'Success Update photo',
+              icon: 'success'
             })
             .then(() => {
               setButtonVisibility(!buttonVisibility);
               window.location.href = `/profile/edit`;
             });
         })
-        .catch((err) => {
+        .catch(err => {
           swal
             .fire({
-              title: "Error!",
+              title: 'Error!',
               text: err.response.data.error,
-              icon: "error",
+              icon: 'error'
             })
             .then(() => {
               setButtonVisibility(!buttonVisibility);
@@ -99,50 +99,149 @@ const Profile = (props) => {
     jobDesk: userData.job_desk,
     address: userData.address,
     workplace: userData.workplace,
-    aboutUser: userData.about,
+    aboutUser: userData.about
   });
+  const [skills, setSkills] = useState(userData.skills);
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     if (
-      form.name === "" ||
-      form.jobDesk === "" ||
-      form.address === "" ||
-      form.workplace === "" ||
-      form.aboutUser === ""
+      form.name === '' ||
+      form.jobDesk === '' ||
+      form.address === '' ||
+      form.workplace === '' ||
+      form.aboutUser === '' ||
+      skills === ''
     ) {
       swal.fire({
-        title: "Error!",
+        title: 'Error!',
         text: `Data Can't be empty`,
-        icon: "error",
+        icon: 'error'
       });
     } else {
       const body = {
-        ...form,
+        skills: `{${skills}}`,
+        ...form
       };
       axios
-        .put(`http://localhost:3501/users/update/worker`, body, {
+        .put(`${process.env.NEXT_PUBLIC_API_URL}users/update/worker`, body, {
           headers: {
-            token: token,
-          },
+            token: token
+          }
         })
-        .then((res) => {
+        .then(res => {
           swal
             .fire({
-              title: "Success!",
-              text: "Success Update user",
-              icon: "success",
+              title: 'Success!',
+              text: 'Success Update user',
+              icon: 'success'
             })
             .then(() => {
               router.push(`/profile/${userData.id}`);
             });
         })
-        .catch((err) => {
+        .catch(err => {
           swal
             .fire({
-              title: "Error!",
+              title: 'Error!',
               text: err.response.data.error,
-              icon: "error",
+              icon: 'error'
+            })
+            .then(() => {});
+        });
+    }
+  };
+
+  // ----------------------portofolio insert-------------------
+  const [formPorto, setFormPorto] = useState({
+    nameApp: '',
+    linkRepo: '',
+    typeApp: 1,
+    photo: ''
+  });
+  const onPortofolio = e => {
+    e.preventDefault();
+    if (formPorto.nameApp === '' || formPorto.linkRepo === '' || formPorto.photo === '') {
+      swal.fire({
+        title: 'Error!',
+        text: `Data Can't be empty`,
+        icon: 'error'
+      });
+    } else {
+      const body = {
+        ...formPorto
+      };
+      axios
+        .post(`${process.env.NEXT_PUBLIC_API_URL}portofolio`, body, {
+          headers: {
+            token: token
+          }
+        })
+        .then(res => {
+          swal
+            .fire({
+              title: 'Success!',
+              text: 'Success Insert Portofolio',
+              icon: 'success'
+            })
+            .then(() => {
+              router.push(`/profile/${userData.id}`);
+            });
+        })
+        .catch(err => {
+          swal
+            .fire({
+              title: 'Error!',
+              text: err.response.data.error,
+              icon: 'error'
+            })
+            .then(() => {});
+        });
+    }
+  };
+
+  // ----------------------Exp insert-------------------
+  const [formExp, setFormExp] = useState({
+    company: '',
+    year: '',
+    aboutExperience: '',
+    position: ''
+  });
+  const onExperience = e => {
+    e.preventDefault();
+    if (formExp.company === '' || formExp.year === '' || formExp.aboutExperience === '' || formExp.position === '') {
+      swal.fire({
+        title: 'Error!',
+        text: `Data Can't be empty`,
+        icon: 'error'
+      });
+    } else {
+      const body = {
+        ...formExp
+      };
+      axios
+        .post(`${process.env.NEXT_PUBLIC_API_URL}experience`, body, {
+          headers: {
+            token: token
+          }
+        })
+        .then(res => {
+          swal
+            .fire({
+              title: 'Success!',
+              text: 'Success Insert Pengalaman Kerja',
+              icon: 'success'
+            })
+            .then(() => {
+              router.push(`/profile/${userData.id}`);
+            });
+        })
+        .catch(err => {
+          swal
+            .fire({
+              title: 'Error!',
+              text: err.response.data.error,
+              icon: 'error'
             })
             .then(() => {});
         });
@@ -168,48 +267,45 @@ const Profile = (props) => {
                   <Image
                     className={styles.image}
                     // src="/profile-default.png"
-                    src={`http://localhost:3501/users/${userData.photo}`}
+                    src={getPhoto}
+                    onError={() => setGetPhoto('/profile-default.png')}
                     width={105}
                     height={105}
                   />
                 </div>
                 <div className={styles.divEditImage}>
-                  <form onSubmit={(e) => photoSubmit(e)}>
+                  <form onSubmit={e => photoSubmit(e)}>
                     <input
                       type="file"
                       id="photo"
-                      style={{ display: "none" }}
-                      onChange={(e) => {
+                      style={{ display: 'none' }}
+                      onChange={e => {
                         setPhoto(e.target.files[0]);
                         setButtonVisibility(!buttonVisibility);
                       }}
                     />
-                    <input
-                      type="submit"
-                      id="submit"
-                      style={{ display: "none" }}
-                    />
+                    <input type="submit" id="submit" style={{ display: 'none' }} />
                   </form>
                   {buttonVisibility ? (
                     <>
                       <button
                         type="button"
                         onClick={() => {
-                          document.getElementById("submit").click();
+                          document.getElementById('submit').click();
                         }}
                         style={{
-                          width: "135px",
-                          height: "35px",
-                          backgroundColor: "#FFFFFF",
-                          border: "2px solid #5e50a1",
-                          color: "#5e50a1",
-                          borderRadius: "10px",
-                          fontWeight: "bold",
-                          fontSize: "15px",
-                          marginBottom: "0px",
+                          width: '135px',
+                          height: '35px',
+                          backgroundColor: '#FFFFFF',
+                          border: '2px solid #5e50a1',
+                          color: '#5e50a1',
+                          borderRadius: '10px',
+                          fontWeight: 'bold',
+                          fontSize: '15px',
+                          marginBottom: '0px'
                         }}
                       >
-                        {loading ? "Loading.." : "Upload"}
+                        {loading ? 'Loading..' : 'Upload'}
                       </button>
                     </>
                   ) : (
@@ -217,15 +313,11 @@ const Profile = (props) => {
                       <button
                         className={styles.buttonEdit}
                         onClick={() => {
-                          document.getElementById("photo").click();
+                          document.getElementById('photo').click();
                         }}
                       >
                         <div className={styles.imageEdit}>
-                          <Image
-                            src="/edit.photo.profile.svg"
-                            width={19}
-                            height={19}
-                          />
+                          <Image src="/edit.photo.profile.svg" width={19} height={19} />
                         </div>
                         <div className={styles.divTextEdit}>Edit</div>
                       </button>
@@ -238,17 +330,12 @@ const Profile = (props) => {
                   <div className={styles.divLocation}>
                     <div
                       style={{
-                        marginRight: "5px",
-                        position: "relative",
-                        display: "flex",
+                        marginRight: '5px',
+                        position: 'relative',
+                        display: 'flex'
                       }}
                     >
-                      <Image
-                        className={styles}
-                        src="/mapIcon.svg"
-                        width={15}
-                        height={17}
-                      />
+                      <Image className={styles} src="/mapIcon.svg" width={15} height={17} />
                     </div>
                     <div className={styles.address}>{userData.workplace}</div>
                   </div>
@@ -256,7 +343,7 @@ const Profile = (props) => {
                   <div className={styles.divButtton}>
                     <button
                       onClick={() => {
-                        document.getElementById("submitUser").click();
+                        document.getElementById('submitUser').click();
                       }}
                       type="button"
                       className={styles.buttonSave}
@@ -278,7 +365,7 @@ const Profile = (props) => {
               {/* ---------------------------Right------------- */}
               <div>
                 {/* -----data diri---------- */}
-                <form onSubmit={(e) => onSubmit(e)}>
+                <form onSubmit={e => onSubmit(e)}>
                   <div className={`row ${styles.rightContent}`}>
                     <div className={styles.dataDiri}>
                       <h3>Data Diri</h3>
@@ -289,8 +376,8 @@ const Profile = (props) => {
                           <label
                             htmlFor="name"
                             style={{
-                              marginBottom: "7px",
-                              color: "rgba(158, 160, 165, 1)",
+                              marginBottom: '7px',
+                              color: 'rgba(158, 160, 165, 1)'
                             }}
                           >
                             Name Lengkap
@@ -303,9 +390,7 @@ const Profile = (props) => {
                           id="name"
                           placeholder=" Masukan nama lengkap"
                           className={styles.inputEmail}
-                          onChange={(e) =>
-                            setForm({ ...form, name: e.target.value })
-                          }
+                          onChange={e => setForm({ ...form, name: e.target.value })}
                         />
                       </div>
                       <div className={styles.divName}>
@@ -313,8 +398,8 @@ const Profile = (props) => {
                           <label
                             htmlFor="job"
                             style={{
-                              marginBottom: "7px",
-                              color: "rgba(158, 160, 165, 1)",
+                              marginBottom: '7px',
+                              color: 'rgba(158, 160, 165, 1)'
                             }}
                           >
                             Job Desk
@@ -327,9 +412,7 @@ const Profile = (props) => {
                           id="job"
                           placeholder=" Masukan job desk"
                           className={styles.inputEmail}
-                          onChange={(e) =>
-                            setForm({ ...form, jobDesk: e.target.value })
-                          }
+                          onChange={e => setForm({ ...form, jobDesk: e.target.value })}
                         />
                       </div>
                       <div className={styles.divName}>
@@ -337,8 +420,8 @@ const Profile = (props) => {
                           <label
                             htmlFor="domisili"
                             style={{
-                              marginBottom: "7px",
-                              color: "rgba(158, 160, 165, 1)",
+                              marginBottom: '7px',
+                              color: 'rgba(158, 160, 165, 1)'
                             }}
                           >
                             Domisili
@@ -351,9 +434,7 @@ const Profile = (props) => {
                           id="domisili"
                           placeholder=" Masukan domisili"
                           className={styles.inputEmail}
-                          onChange={(e) =>
-                            setForm({ ...form, address: e.target.value })
-                          }
+                          onChange={e => setForm({ ...form, address: e.target.value })}
                         />
                       </div>
                       <div className={styles.divName}>
@@ -361,8 +442,8 @@ const Profile = (props) => {
                           <label
                             htmlFor="workplace"
                             style={{
-                              marginBottom: "7px",
-                              color: "rgba(158, 160, 165, 1)",
+                              marginBottom: '7px',
+                              color: 'rgba(158, 160, 165, 1)'
                             }}
                           >
                             Tempat Kerja
@@ -375,9 +456,7 @@ const Profile = (props) => {
                           id="workplace"
                           placeholder=" Masukan tempat kerja"
                           className={styles.inputEmail}
-                          onChange={(e) =>
-                            setForm({ ...form, workplace: e.target.value })
-                          }
+                          onChange={e => setForm({ ...form, workplace: e.target.value })}
                         />
                       </div>
                       <div className={styles.divName}>
@@ -385,8 +464,8 @@ const Profile = (props) => {
                           <label
                             htmlFor="deskripsi"
                             style={{
-                              marginBottom: "7px",
-                              color: "rgba(158, 160, 165, 1)",
+                              marginBottom: '7px',
+                              color: 'rgba(158, 160, 165, 1)'
                             }}
                           >
                             Deskripsi Singkat
@@ -398,9 +477,7 @@ const Profile = (props) => {
                           id="deskripsi"
                           placeholder=" Masukan deskripsi singkat"
                           className={styles.textArea}
-                          onChange={(e) =>
-                            setForm({ ...form, aboutUser: e.target.value })
-                          }
+                          onChange={e => setForm({ ...form, aboutUser: e.target.value })}
                         ></textarea>
                       </div>
                     </div>
@@ -413,25 +490,19 @@ const Profile = (props) => {
                     </div>
                     <div className={`row ${styles.formSkills}`}>
                       <div className={`col-12 ${styles.divSelect}`}>
-                        <Select
-                          defaultValue={[stateOptions[2], stateOptions[3]]}
-                          isMulti
-                          name="skills"
-                          options={stateOptions}
-                          className={`basic-multi-select ${styles.selectSkills}`}
-                          classNamePrefix="select"
+                        <input
+                          defaultValue={skills}
+                          type="text"
+                          name="skill"
+                          id="skill"
+                          placeholder=" Masukan skill"
+                          className={styles.inputSkill}
+                          onChange={e => setSkills(e.target.value)}
                         />
                       </div>
-                      {/* <button className={`col-2 ${styles.buttonSkills}`}>
-                      Simpan
-                    </button> */}
                     </div>
                   </div>
-                  <button
-                    style={{ display: "none" }}
-                    id="submitUser"
-                    type="submit"
-                  ></button>
+                  <button style={{ display: 'none' }} id="submitUser" type="submit"></button>
                 </form>
 
                 {/* -------Pengalaman kerja---------- */}
@@ -440,14 +511,14 @@ const Profile = (props) => {
                     <h3>Pengalaman Kerja</h3>
                   </div>
                   <div>
-                    <form>
+                    <form onSubmit={e => onExperience(e)}>
                       <div className={styles.divName}>
                         <div>
                           <label
                             htmlFor="posisi"
                             style={{
-                              marginBottom: "7px",
-                              color: "rgba(158, 160, 165, 1)",
+                              marginBottom: '7px',
+                              color: 'rgba(158, 160, 165, 1)'
                             }}
                           >
                             Posisi
@@ -459,19 +530,17 @@ const Profile = (props) => {
                           id="posisi"
                           placeholder=" Masukan posisi"
                           className={styles.inputEmail}
-                          // onChange={(e) =>
-                          //   setForm({ ...form, name: e.target.value })
-                          // }
+                          onChange={e => setFormExp({ ...formExp, position: e.target.value })}
                         />
                       </div>
-                      <div className="row" style={{ padding: "0px 11px" }}>
+                      <div className="row" style={{ padding: '0px 11px' }}>
                         <div className={`col-6 ${styles.divName}`}>
                           <div>
                             <label
                               htmlFor="company"
                               style={{
-                                marginBottom: "7px",
-                                color: "rgba(158, 160, 165, 1)",
+                                marginBottom: '7px',
+                                color: 'rgba(158, 160, 165, 1)'
                               }}
                             >
                               Name Perusahaan
@@ -483,9 +552,7 @@ const Profile = (props) => {
                             id="company"
                             placeholder=" Masukan nama perusahaan"
                             className={styles.inputEmail}
-                            // onChange={(e) =>
-                            //   setForm({ ...form, name: e.target.value })
-                            // }
+                            onChange={e => setFormExp({ ...formExp, company: e.target.value })}
                           />
                         </div>
                         <div className={`col-6 ${styles.divName}`}>
@@ -493,8 +560,8 @@ const Profile = (props) => {
                             <label
                               htmlFor="year"
                               style={{
-                                marginBottom: "7px",
-                                color: "rgba(158, 160, 165, 1)",
+                                marginBottom: '7px',
+                                color: 'rgba(158, 160, 165, 1)'
                               }}
                             >
                               Bulan / tahun
@@ -505,9 +572,7 @@ const Profile = (props) => {
                             name="year"
                             id="year"
                             className={styles.inputEmail}
-                            // onChange={(e) =>
-                            //   setForm({ ...form, name: e.target.value })
-                            // }
+                            onChange={e => setFormExp({ ...formExp, year: e.target.value })}
                           />
                         </div>
                       </div>
@@ -516,8 +581,8 @@ const Profile = (props) => {
                           <label
                             htmlFor="deskrip-company"
                             style={{
-                              marginBottom: "7px",
-                              color: "rgba(158, 160, 165, 1)",
+                              marginBottom: '7px',
+                              color: 'rgba(158, 160, 165, 1)'
                             }}
                           >
                             Deskripsi Singkat
@@ -528,35 +593,34 @@ const Profile = (props) => {
                           id="deskrip-company"
                           placeholder=" Masukan deskripsi singkat"
                           className={styles.textArea}
+                          onChange={e => setFormExp({ ...formExp, aboutExperience: e.target.value })}
                         ></textarea>
                       </div>
+                      <div className={styles.dataDiri} style={{ marginBottom: '35px' }}></div>
+                      <div className={styles.divADD}>
+                        <button type="submit" className={styles.buttonADD}>
+                          <h6>Tambah Pengalaman Kerja</h6>
+                        </button>
+                      </div>
                     </form>
-                  </div>
-                  <div
-                    className={styles.dataDiri}
-                    style={{ marginBottom: "35px" }}
-                  ></div>
-                  <div className={styles.divADD}>
-                    <button className={styles.buttonADD}>
-                      <h6>Tambah Pengalaman Kerja</h6>
-                    </button>
                   </div>
                 </div>
 
                 {/* --------Portofolio---------- */}
                 <div className={`row ${styles.rightContent}`}>
+                  {/* <form></form> */}
                   <div className={styles.dataDiri}>
                     <h3>Portofolio</h3>
                   </div>
                   <div>
-                    <form>
+                    <form onSubmit={e => onPortofolio(e)}>
                       <div className={styles.divName}>
                         <div>
                           <label
                             htmlFor="app"
                             style={{
-                              marginBottom: "7px",
-                              color: "rgba(158, 160, 165, 1)",
+                              marginBottom: '7px',
+                              color: 'rgba(158, 160, 165, 1)'
                             }}
                           >
                             Nama Aplikasi
@@ -568,9 +632,7 @@ const Profile = (props) => {
                           id="app"
                           placeholder=" Masukan nama aplikasi"
                           className={styles.inputEmail}
-                          // onChange={(e) =>
-                          //   setForm({ ...form, name: e.target.value })
-                          // }
+                          onChange={e => setFormPorto({ ...formPorto, nameApp: e.target.value })}
                         />
                       </div>
                       <div className={styles.divName}>
@@ -578,8 +640,8 @@ const Profile = (props) => {
                           <label
                             htmlFor="repository"
                             style={{
-                              marginBottom: "7px",
-                              color: "rgba(158, 160, 165, 1)",
+                              marginBottom: '7px',
+                              color: 'rgba(158, 160, 165, 1)'
                             }}
                           >
                             Link Repository
@@ -591,32 +653,20 @@ const Profile = (props) => {
                           id="repository"
                           placeholder=" Masukan link repository"
                           className={styles.inputEmail}
-                          // onChange={(e) =>
-                          //   setForm({ ...form, name: e.target.value })
-                          // }
+                          onChange={e => setFormPorto({ ...formPorto, linkRepo: e.target.value })}
                         />
                       </div>
                       <div className={styles.divPorto}>
                         <div className={styles.porto}>Type Portofolio</div>
                         <div className={`d-flex ${styles.divRadio}`}>
                           <div className={styles.borderRadio}>
-                            <input
-                              type="radio"
-                              name="radio"
-                              id="radio1"
-                              className={styles.inputRadio}
-                            />
+                            <input type="radio" name="radio" id="radio1" className={styles.inputRadio} />
                             <label htmlFor="radio1" className={styles}>
                               Aplikasi Mobile
                             </label>
                           </div>
                           <div className={styles.borderRadio}>
-                            <input
-                              type="radio"
-                              name="radio"
-                              id="radio2"
-                              className={styles.inputRadio}
-                            />
+                            <input type="radio" name="radio" id="radio2" className={styles.inputRadio} />
                             <label htmlFor="radio2" className={styles}>
                               Aplikasi Web
                             </label>
@@ -625,27 +675,30 @@ const Profile = (props) => {
                       </div>
                       <div className={styles.divPorto}>
                         <div className={styles.porto}>Upload Gambar</div>
-                        <div className={styles.inputPorto}>
+                        <div className={`${styles.inputPorto}`}>
                           <div className={styles.buttonPorto}>
-                            <Image
-                              className={styles}
-                              src="/portooo.png"
-                              width={200}
-                              height={105}
+                            <label style={{ cursor: 'pointer' }} htmlFor="linkporto">
+                              <Image className={styles} src="/portooo.png" width={200} height={105} />
+                            </label>
+                          </div>
+                          <div>
+                            <input
+                              id="linkporto"
+                              placeholder=" Masukan link photo"
+                              className={styles.inputImagePorto}
+                              type="text"
+                              onChange={e => setFormPorto({ ...formPorto, photo: e.target.value })}
                             />
                           </div>
                         </div>
                       </div>
+                      <div className={styles.dataDiri} style={{ marginBottom: '35px' }}></div>
+                      <div className={styles.divADD}>
+                        <button type="submit" className={styles.buttonADD}>
+                          <h6>Tambah Portofolio</h6>
+                        </button>
+                      </div>
                     </form>
-                  </div>
-                  <div
-                    className={styles.dataDiri}
-                    style={{ marginBottom: "35px" }}
-                  ></div>
-                  <div className={styles.divADD}>
-                    <button className={styles.buttonADD}>
-                      <h6>Tambah Portofolio</h6>
-                    </button>
                   </div>
                 </div>
               </div>
@@ -658,6 +711,6 @@ const Profile = (props) => {
   );
 };
 
-Profile.layout = "MainLayout";
+Profile.layout = 'MainLayout';
 
 export default Profile;

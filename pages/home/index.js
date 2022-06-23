@@ -1,37 +1,37 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import axios from "axios";
-import Head from "next/head";
-import jwtDecode from "jwt-decode";
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import axios from 'axios';
+import Head from 'next/head';
+import jwtDecode from 'jwt-decode';
 
-import styles from "../../styles/House.module.css";
-import styless from "../../styles/CardHouse.module.css";
-import Card from "../../components/house/index";
+import styles from '../../styles/House.module.css';
+import styless from '../../styles/CardHouse.module.css';
+import Card from '../../components/house/index';
 
 export async function getServerSideProps(context) {
   const { search, sort, limit, page } = context.query;
-  const getSearch = !search ? "" : search;
-  const getSort = !sort ? "fullname" : sort;
+  const getSearch = !search ? '' : search;
+  const getSort = !sort ? 'fullname' : sort;
   const { token } = context.req.cookies;
   const apiUsers = async () => {
     try {
       const response = await axios({
-        method: "get",
-        url: `http://localhost:3501/users?limit=&page=&search=${getSearch}&sortField=${getSort}&sortType=`,
+        method: 'get',
+        url: `${process.env.NEXT_PUBLIC_API_URL}users?limit=&page=&search=${getSearch}&sortField=${getSort}&sortType=`,
         headers: {
-          token,
-        },
+          token
+        }
       });
       return {
         data: response.data,
-        error: false,
+        error: false
       };
     } catch (error) {
       return {
         data: [],
-        error: true,
+        error: true
       };
     }
   };
@@ -39,18 +39,18 @@ export async function getServerSideProps(context) {
     props: {
       data: [],
       getUsers: await apiUsers(),
-      getSearch,
-    },
+      getSearch
+    }
   };
 }
 
-const Home = (props) => {
+const Home = props => {
   const router = useRouter();
   const [data, setData] = useState(props.getUsers.data);
-  const [form, setForm] = useState("");
-  const [forms, setForms] = useState("");
+  const [form, setForm] = useState('');
+  const [forms, setForms] = useState('');
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     // router.push(`/home?search=${form}&sort=${forms}`); //window.location
     window.location.href = `/home?search=${form}&sort=${forms}`;
@@ -72,14 +72,14 @@ const Home = (props) => {
             </div>
             <div className="col-1"></div>
           </div>
-          <div className="row" style={{ margin: "35px 0px" }}>
+          <div className="row" style={{ margin: '35px 0px' }}>
             <div className="col-1"></div>
             <div className={`col-10`}>
-              <form onSubmit={(e) => onSubmit(e)}>
+              <form onSubmit={e => onSubmit(e)}>
                 <div className={`bg-white ${styles.divSearch}`}>
                   <input
                     value={form}
-                    onChange={(e) => setForm(e.target.value)}
+                    onChange={e => setForm(e.target.value)}
                     placeholder="  Search for any skill"
                     className={styles.search}
                     type="text"
@@ -90,12 +90,7 @@ const Home = (props) => {
                   </div>
                   <div className={styles.divLine}></div>
                   <div className={styles.divSort}>
-                    <select
-                      onChange={(e) => setForms(e.target.value)}
-                      name=""
-                      id=""
-                      className={styles.sort}
-                    >
+                    <select onChange={e => setForms(e.target.value)} name="" id="" className={styles.sort}>
                       <option value="null" disabled="disabled" selected>
                         Sort
                       </option>
@@ -167,6 +162,6 @@ const Home = (props) => {
   );
 };
 
-Home.layout = "MainLayout";
+Home.layout = 'MainLayout';
 
 export default Home;

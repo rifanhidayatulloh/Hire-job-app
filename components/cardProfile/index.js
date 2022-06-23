@@ -1,35 +1,83 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import axios from "axios";
-import swal from "sweetalert2";
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import axios from 'axios';
+import swal from 'sweetalert2';
 
-import styles from "../../styles/CardProfile.module.css";
+import styles from '../../styles/CardProfile.module.css';
 
-const CardProfile = (props) => {
+const CardProfile = props => {
   const router = useRouter();
   const [data, setData] = useState(props);
   const isError = data.skills;
+  const [photo, setPhoto] = useState(`${process.env.NEXT_PUBLIC_API_URL}users/${props.photo}`);
 
-  const onLogout = (e) => {
+  const onLogout = e => {
     e.preventDefault();
     swal
       .fire({
-        title: "Are you sure?",
-        text: "Logout",
-        icon: "warning",
+        title: 'Are you sure?',
+        text: 'Logout',
+        icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes Logout",
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes Logout'
       })
-      .then((result) => {
+      .then(result => {
         if (result.isConfirmed) {
-          document.cookie = "token=; path=/";
-          document.cookie = "idUser=; path=/";
-          router.push("/login");
-          swal.fire("Logout", "success");
+          document.cookie = 'token=; path=/';
+          document.cookie = 'idUser=; path=/';
+          router.push('/login');
+          swal.fire('Logout', 'success');
+        }
+      });
+  };
+
+  const onChat = e => {
+    e.preventDefault();
+    const body = {
+      workerId: `${props.id}`
+    };
+    swal
+      .fire({
+        title: 'Are you sure?',
+        text: 'To Hiring',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes Hire'
+      })
+      .then(result => {
+        if (result.isConfirmed) {
+          axios
+            .post(`${process.env.NEXT_PUBLIC_API_URL}chat`, body, {
+              headers: {
+                token: props.token
+              }
+            })
+            .then(res => {
+              swal
+                .fire({
+                  title: 'Success!',
+                  text: 'Hire Success',
+                  icon: 'success'
+                })
+                .then(() => {
+                  router.push(`/home`);
+                });
+            })
+            .catch(err => {
+              swal
+                .fire({
+                  title: 'Error!',
+                  text: 'error',
+                  icon: 'error'
+                })
+                .then(() => {});
+            });
         }
       });
   };
@@ -41,7 +89,8 @@ const CardProfile = (props) => {
             <Image
               className={styles.image}
               // src="/profile-default.png"
-              src={`http://localhost:3501/users/${props.photo}`}
+              src={photo}
+              onError={() => setPhoto('/profile-default.png')}
               width={105}
               height={105}
             />
@@ -50,13 +99,8 @@ const CardProfile = (props) => {
             <div className={styles.name}>{props.name}</div>
             <div className={styles.profession}>{props.jobDesk}</div>
             <div className={styles.divLocation}>
-              <div style={{ marginRight: "5px" }}>
-                <Image
-                  className={styles}
-                  src="/mapIcon.svg"
-                  width={15}
-                  height={17}
-                />
+              <div style={{ marginRight: '5px' }}>
+                <Image className={styles} src="/mapIcon.svg" width={15} height={17} />
               </div>
               <div className={styles.address}>{props.workplace}</div>
             </div>
@@ -70,15 +114,12 @@ const CardProfile = (props) => {
                       <div>Edit Profile</div>
                     </button>
                   </Link>
-                  <button
-                    onClick={(e) => onLogout(e)}
-                    className={styles.buttonHire}
-                  >
+                  <button onClick={e => onLogout(e)} className={styles.buttonLogout}>
                     <div>Logout</div>
                   </button>
                 </>
               ) : props.level == 1 ? (
-                <button className={styles.buttonHire}>
+                <button onClick={e => onChat(e)} className={styles.buttonHire}>
                   <div>Hire</div>
                 </button>
               ) : (

@@ -11,7 +11,7 @@ import styles from "../../../styles/RegisterWork.module.css";
 const onRegister = (data) => {
   return new Promise((resolve, reject) => {
     axios
-      .post(`http://localhost:3501/auth/register`, data)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}auth/register`, data)
       .then((res) => {
         resolve(res.data);
       })

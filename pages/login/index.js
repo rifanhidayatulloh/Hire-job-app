@@ -11,7 +11,7 @@ import styles from "../../styles/Login.module.css";
 const onLogin = (data) => {
   return new Promise((resolve, reject) => {
     axios
-      .post(`http://localhost:3501/auth/login`, data)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}auth/login`, data)
       .then((res) => {
         document.cookie = `token=${res.data.token}; path=/`;
         document.cookie = `idUser=${res.data.data}; path=/`;
