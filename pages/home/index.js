@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import axios from 'axios';
 import Head from 'next/head';
+import ReactPaginate from 'react-paginate';
 import jwtDecode from 'jwt-decode';
 
 import styles from '../../styles/House.module.css';
@@ -19,7 +20,7 @@ export async function getServerSideProps(context) {
     try {
       const response = await axios({
         method: 'get',
-        url: `${process.env.NEXT_PUBLIC_API_URL}users?limit=&page=&search=${getSearch}&sortField=${getSort}&sortType=`,
+        url: `${process.env.NEXT_PUBLIC_API_URL}users?limit=4&page=${page}&search=${getSearch}&sortField=${getSort}&sortType=`,
         headers: {
           token
         }
@@ -49,11 +50,25 @@ const Home = props => {
   const [data, setData] = useState(props.getUsers.data);
   const [form, setForm] = useState('');
   const [forms, setForms] = useState('');
+  // console.log(data.pagination.totalPage);
 
   const onSubmit = e => {
     e.preventDefault();
     // router.push(`/home?search=${form}&sort=${forms}`); //window.location
     window.location.href = `/home?search=${form}&sort=${forms}`;
+  };
+
+  const handlePageClick = ({ selected: selectedPage }) => {
+    const page = selectedPage + 1;
+    let url = '/home?';
+
+    if (page) {
+      url += `search=${form}&sort=${forms}&page=${page}`;
+    }
+
+    router.push(`${url}`);
+
+    // window.location.href = `${url}`;
   };
 
   return (
@@ -80,7 +95,7 @@ const Home = props => {
                   <input
                     value={form}
                     onChange={e => setForm(e.target.value)}
-                    placeholder="  Search for any skill"
+                    placeholder=" Search"
                     className={styles.search}
                     type="text"
                     id="search"
@@ -111,7 +126,7 @@ const Home = props => {
             <div className="col-1"></div>
             <div className="col-10">
               {/* ------------------------------Card------------------------------------------------- */}
-              {!data.data ? (
+              {!props.getUsers.data.data ? (
                 <>
                   <div className={styles.divError}>
                     <div className={styles.error}>
@@ -121,7 +136,7 @@ const Home = props => {
                 </>
               ) : (
                 <div>
-                  {data.data.map((e, i) => (
+                  {props.getUsers.data.data.map((e, i) => (
                     <div key={i}>
                       <Card
                         userId={e.id}
@@ -133,6 +148,39 @@ const Home = props => {
                       />
                     </div>
                   ))}
+                </div>
+              )}
+
+              {!props.getUsers.data.data ? (
+                <></>
+              ) : (
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    position: 'relative',
+                    marginTop: '20px'
+                  }}
+                >
+                  <ReactPaginate
+                    breakLabel="..."
+                    onPageChange={handlePageClick}
+                    pageCount={props.getUsers.data.pagination.totalPage}
+                    previousLabel="<< "
+                    nextLabel=" >>"
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    previousClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextClassName="page-item"
+                    nextLinkClassName="page-link"
+                    breakClassName="page-item"
+                    breakLinkClassName="page-link"
+                    containerClassName="pagination"
+                    activeClassName="active"
+                    renderOnZeroPageCount={null}
+                  />
                 </div>
               )}
 

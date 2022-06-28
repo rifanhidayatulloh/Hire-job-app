@@ -54,9 +54,11 @@
 /* --------------Right------------- */
 .rightContent {
   background-color: white;
-  height: 75vh;
+  height: max-content;
+  max-height: 75vh;
   border-radius: 10px;
   padding: 15px 0px;
+  /* overflow: scroll; */
 }
 .divMainRight {
   border-bottom: 2px double gray;
@@ -88,4 +90,22 @@
   width: max-content;
   max-width: 50%;
   border: 2px double #5e50a1;
+}
+
+@media screen and (max-width: 412px) {
+  .mainContent {
+    height: 200vh;
+  }
+
+  .content {
+    left: 11px;
+  }
+
+  .leftContent {
+    margin-bottom: 20px;
+  }
+
+  .ballon {
+    max-width: 55%;
+  }
 }

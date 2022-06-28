@@ -8,7 +8,7 @@
 
 /* Left Content */
 .leftContent {
-  background-image: url("../public/b9de1e2e658498c339524384fbdc112d.jpg");
+  background-image: url('../public/b9de1e2e658498c339524384fbdc112d.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -18,7 +18,7 @@
   position: relative;
 }
 .leftContent::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   bottom: 0;
@@ -70,17 +70,17 @@
   border-radius: 7px;
   border: 1px double rgba(226, 229, 237, 1);
 }
-.inputEmail[type="email"] {
+.inputEmail[type='email'] {
   padding-left: 10px;
 }
-.inputEmail[type="password"] {
+.inputEmail[type='password'] {
   padding-left: 10px;
 }
-.inputEmail[type="email"]:focus {
+.inputEmail[type='email']:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
-.inputEmail[type="password"]:focus {
+.inputEmail[type='password']:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
@@ -104,4 +104,15 @@
 .divRegister {
   position: relative;
   text-align: center;
+}
+
+/* ----------- */
+@media screen and (max-width: 412px) {
+  .leftContent {
+    display: none;
+  }
+
+  .rightContent {
+    width: 83%;
+  }
 }

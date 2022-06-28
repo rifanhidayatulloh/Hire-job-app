@@ -155,38 +155,38 @@
   border-radius: 7px;
   border: 1px double rgba(226, 229, 237, 1);
 }
-.inputEmail[type="text"] {
+.inputEmail[type='text'] {
   padding-left: 10px;
 }
-.inputEmail[type="text"]:focus {
+.inputEmail[type='text']:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
-.inputEmail[type="date"] {
+.inputEmail[type='date'] {
   padding-left: 10px;
 }
-.inputEmail[type="date"]:focus {
+.inputEmail[type='date']:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
-.inputEmail[type="url"] {
+.inputEmail[type='url'] {
   padding-left: 10px;
 }
-.inputEmail[type="url"]:focus {
+.inputEmail[type='url']:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
-.inputEmail[type="email"] {
+.inputEmail[type='email'] {
   padding-left: 10px;
 }
-.inputEmail[type="email"]:focus {
+.inputEmail[type='email']:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
-.inputEmail[type="number"] {
+.inputEmail[type='number'] {
   padding-left: 10px;
 }
-.inputEmail[type="number"]:focus {
+.inputEmail[type='number']:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
@@ -203,4 +203,17 @@
 .textArea:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
+}
+
+@media screen and (max-width: 412px) {
+  .mainContent {
+    height: 185vh;
+  }
+  .content {
+    left: 23px;
+  }
+
+  .rightContent {
+    width: 100%;
+  }
 }

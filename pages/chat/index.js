@@ -65,8 +65,8 @@ const Chat = props => {
         <div className={`row ${styles.mainContent}`}>
           <div className={styles.background}></div>
           <div className={`row ${styles.content}`}>
-            <div className="col-1"></div>
-            <div className={`col-3`}>
+            <div className="col-md-1"></div>
+            <div className={`col-md-3 col-12`}>
               {/* ------------ */}
               {data ? (
                 <Left token={props.token} idUser={props.idUser} companyId={data.company_id} />
@@ -96,7 +96,7 @@ const Chat = props => {
                 </>
               )}
             </div>
-            <div className="col-7 ">
+            <div className="col-md-7 col-12 ">
               {/* --------------- */}
               {data ? (
                 <Right token={props.token} idUser={props.idUser} companyId={data.company_id} chat={data.chat} />
@@ -104,7 +104,7 @@ const Chat = props => {
                 <>
                   <div className={styles.rightContent}>
                     <div className={`row ${styles}`}>
-                      <div className={`col-1 ${styles.divRightImage}`}>
+                      <div className={`col-md-1 ${styles.divRightImage}`}>
                         {/* <Image
                           className={styles.rightImage}
                           src="/profile-default.png"
@@ -114,7 +114,7 @@ const Chat = props => {
                           height={50}
                         /> */}
                       </div>
-                      <div className={`col-9 ${styles}`}>
+                      <div className={`col-md-9 ${styles}`}>
                         {/* <div style={{ cursor: 'pointer', fontSize: '20px' }}>{users.company}</div>
                         <div style={{ color: '#5e50a1', cursor: 'pointer' }}>online</div> */}
                       </div>
@@ -124,7 +124,7 @@ const Chat = props => {
                 </>
               )}
             </div>
-            <div className="col-1"></div>
+            <div className="col-md-1"></div>
           </div>
         </div>
       </section>

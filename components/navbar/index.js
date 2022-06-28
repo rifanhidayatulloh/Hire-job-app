@@ -8,6 +8,46 @@ import jwtDecode from 'jwt-decode';
 
 import styles from '../../styles/Navbar.module.css';
 
+// export async function getServerSideProps(context) {
+//   // const { id } = context.query;
+//   const { token, idUser } = context.req.cookies;
+//   console.log(token);
+//   let getLevel;
+//   if (token) {
+//     const { level } = jwtDecode(token);
+//     getLevel = level;
+//   }
+//   const apiUsers = async () => {
+//     try {
+//       const response = await axios({
+//         method: 'get',
+//         url: `${process.env.NEXT_PUBLIC_API_URL}users/${idUser}`,
+//         headers: {
+//           token
+//         }
+//       });
+//       return {
+//         data: response.data,
+//         error: false
+//       };
+//     } catch (error) {
+//       return {
+//         data: [],
+//         error: true
+//       };
+//     }
+//   };
+//   return {
+//     props: {
+//       data: [],
+//       getUsers: await apiUsers(),
+//       idUser,
+//       getLevel,
+//       token
+//     }
+//   };
+// }
+
 const Navbar = () => {
   const id = jsCookie.get('idUser');
   const token = jsCookie.get('token');
@@ -55,7 +95,7 @@ const Navbar = () => {
       <nav className={`container-fluid fixed-top ${shadow}`} backgroundcolor={backgroundColor}>
         <div className={`row ${styles.navContent}`}>
           {/* Nav left */}
-          <div className={`col-6 ${styles.leftContent}`}>
+          <div className={`col-4 col-sm-6 ${styles.leftContent}`}>
             <Link href="/">
               <div>
                 <Image style={{ cursor: 'pointer' }} src="/peworldIcon.png" width={100} height={35} />
@@ -63,7 +103,7 @@ const Navbar = () => {
             </Link>
           </div>
           {/* Nav Right */}
-          <div className={`col-6`}>
+          <div className={`col-sm-6 col-8`}>
             <div className={`${styles.rightContent}`}>
               <ul className={`row ${styles.ul}`}>
                 <li style={{ position: 'relative', top: '15px' }} className={`col-4`}>

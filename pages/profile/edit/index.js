@@ -259,8 +259,8 @@ const Profile = props => {
         <div className={`row ${styles.mainContent}`}>
           <div className={styles.background}></div>
           <div className={`row ${styles.content}`}>
-            <div className="col-1"></div>
-            <div className={`col-3`}>
+            <div className="col-md-1"></div>
+            <div className={`col-md-3 col-12`}>
               {/* ---------------------------------Left--------------- */}
               <div className={`row ${styles.leftContent}`}>
                 <div className={styles.divImage}>
@@ -361,7 +361,7 @@ const Profile = props => {
                 </div>
               </div>
             </div>
-            <div className="col-7 ">
+            <div className="col-md-7 col-12 ">
               {/* ---------------------------Right------------- */}
               <div>
                 {/* -----data diri---------- */}
@@ -703,7 +703,7 @@ const Profile = props => {
                 </div>
               </div>
             </div>
-            <div className="col-1"></div>
+            <div className="col-md-1"></div>
           </div>
         </div>
       </section>

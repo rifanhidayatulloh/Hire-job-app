@@ -111,8 +111,8 @@ const Profile = props => {
         <div className={`row ${styles.mainContent}`}>
           <div className={styles.background}></div>
           <div className={`row ${styles.content}`}>
-            <div className="col-1"></div>
-            <div className={`col-3`}>
+            <div className="col-md-1"></div>
+            <div className={`col-md-3 col-12`}>
               <CardProfile
                 name={data.fullname}
                 id={data.id}
@@ -126,7 +126,7 @@ const Profile = props => {
                 token={props.token}
               />
             </div>
-            <div className="col-7 ">
+            <div className="col-md-7 col-12">
               <Portofolio
                 token={props.token}
                 idUser={props.idUser}
@@ -135,7 +135,7 @@ const Profile = props => {
                 sendExp={experience}
               />
             </div>
-            <div className="col-1"></div>
+            <div className="col-md-1"></div>
           </div>
         </div>
       </section>

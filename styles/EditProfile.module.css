@@ -298,3 +298,21 @@
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
+
+@media screen and (max-width: 412px) {
+  .mainContent {
+    height: 355vh;
+  }
+
+  .content {
+    left: 20px;
+  }
+
+  .rightContent {
+    width: 100%;
+  }
+
+  .inputImagePorto {
+    width: 180px;
+  }
+}

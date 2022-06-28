@@ -9,7 +9,7 @@
 /* Left Content */
 .leftContent {
   height: 90vh;
-  background-image: url("../public/b9de1e2e658498c339524384fbdc112d.jpg");
+  background-image: url('../public/b9de1e2e658498c339524384fbdc112d.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -19,7 +19,7 @@
   position: relative;
 }
 .leftContent::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   bottom: 0;
@@ -70,35 +70,35 @@
   border-radius: 7px;
   border: 1px double rgba(226, 229, 237, 1);
 }
-.inputEmail[type="password"] {
+.inputEmail[type='password'] {
   padding-left: 10px;
 }
-.inputEmail[type="number"] {
+.inputEmail[type='number'] {
   padding-left: 10px;
 }
-.inputEmail[type="text"] {
+.inputEmail[type='text'] {
   padding-left: 10px;
 }
-.inputEmail[type="email"] {
+.inputEmail[type='email'] {
   padding-left: 10px;
 }
-.inputEmail[type="email"]:focus {
+.inputEmail[type='email']:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
-.inputEmail[type="number"]:focus {
+.inputEmail[type='number']:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
-.inputEmail[type="number"]::-webkit-inner-spin-button,
-.inputEmail[type="number"]::-webkit-outer-spin-button {
+.inputEmail[type='number']::-webkit-inner-spin-button,
+.inputEmail[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
-.inputEmail[type="text"]:focus {
+.inputEmail[type='text']:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
-.inputEmail[type="password"]:focus {
+.inputEmail[type='password']:focus {
   outline: none;
   border: 2px double rgba(93, 80, 161, 0.616);
 }
@@ -122,4 +122,15 @@
 .divRegister {
   position: relative;
   display: flex;
+}
+
+/* ----------- */
+@media screen and (max-width: 412px) {
+  .leftContent {
+    display: none;
+  }
+
+  .rightContent {
+    width: 83%;
+  }
 }

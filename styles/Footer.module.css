@@ -14,6 +14,7 @@
 .text {
   width: 30%;
   margin-bottom: 30px;
+  /* background-color: aqua; */
 }
 .end {
   border-top: 2px double rgba(255, 255, 255, 1);
@@ -21,4 +22,13 @@
 }
 .emaiPhone {
   text-align: right;
+}
+
+@media screen and (max-width: 412px) {
+  .footer {
+    height: 37vh;
+  }
+  .text {
+    width: 85%;
+  }
 }

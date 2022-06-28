@@ -26,3 +26,13 @@
   border-radius: 17px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 412px) {
+  .leftContent {
+    left: 15px;
+  }
+
+  .rightContent {
+    right: 15px;
+  }
+}

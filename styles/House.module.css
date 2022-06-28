@@ -2,7 +2,7 @@
   background-color: #e5e5e5;
 }
 .mainContent {
-  height: 150vh;
+  height: 135vh;
   position: relative;
   top: 60px;
 }
@@ -37,10 +37,10 @@
   text-align: center;
   border-radius: 9px;
 }
-.search[type="text"] {
+.search[type='text'] {
   padding-left: 20px;
 }
-.search[type="text"]:focus {
+.search[type='text']:focus {
   outline: none;
   background-color: transparent;
 }
@@ -77,4 +77,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 412px) {
+  .mainContent {
+    height: 80vh;
+  }
+
+  .iconSearch {
+    display: none;
+  }
+  .divLine {
+    display: none;
+  }
+  .buttonSearch {
+    height: 30px;
+    right: 10px;
+    top: 15px;
+  }
 }

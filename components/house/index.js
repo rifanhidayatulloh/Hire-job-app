@@ -22,7 +22,7 @@ const HouseCard = props => {
           <div className={`col-10 ${styles.mainContent}`}>
             <div className={`row ${styles}`}>
               {/* left */}
-              <div className={`col-2 ${styles.leftContent}`}>
+              <div className={`col-md-2 col-3 ${styles.leftContent}`}>
                 <Image
                   className={styles.image}
                   // src="/profile-default.png"
@@ -34,9 +34,11 @@ const HouseCard = props => {
               </div>
 
               {/* Main */}
-              <div className={`col-7 ${styles.centerContent}`}>
+              <div className={`col-md-7 col-5  ${styles.centerContent}`}>
                 <div>
-                  <div className={styles.name}>{props.nama}</div>
+                  <div className={styles.name}>
+                    <div>{props.nama}</div>
+                  </div>
                   <div className={styles.profession}>{!data.jobDesk ? <div></div> : data.jobDesk}</div>
                   <div className={styles.divLocation}>
                     <div style={{ marginRight: '5px' }}>
@@ -60,7 +62,7 @@ const HouseCard = props => {
               </div>
 
               {/* End */}
-              <div className={`col-3 ${styles.rightContent}`}>
+              <div className={`col-md-3  col-4 ${styles.rightContent}`}>
                 <Link href={`/profile/${props.userId}`}>
                   <button className={styles.buttonSearch}>
                     <div>Lihat Profile</div>

@@ -1,12 +1,12 @@
-import Head from "next/head";
-import Link from "next/link";
-import Image from "next/image";
-import "bootstrap/dist/css/bootstrap.css";
+import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
+import 'bootstrap/dist/css/bootstrap.css';
 
-import styles from "../styles/Landingpage.module.css";
-import Navbar from "../components/nav/index";
-import Footer from "../components/footer/index";
-import Card from "../components/cardLandingpage/index";
+import styles from '../styles/Landingpage.module.css';
+import Navbar from '../components/nav/index';
+import Footer from '../components/footer/index';
+import Card from '../components/cardLandingpage/index';
 
 const Landingpage = () => {
   return (
@@ -30,8 +30,8 @@ const Landingpage = () => {
                   <h3>Talenta terbaik negri untuk perubahan revolusi 4.0</h3>
                 </div>
                 <div className={styles.loream1}>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui,
-                  consequuntur, alias debitis nisi fuga voluptas.
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui, consequuntur, alias debitis nisi fuga
+                  voluptas.
                 </div>
                 <div className={`${styles}`}>
                   <Link href={`/home`}>
@@ -63,17 +63,12 @@ const Landingpage = () => {
           <section className={`row ${styles.section2}`}>
             <div className="col-1"></div>
             {/* -------left------ */}
-            <div className="col-5">
+            <div className={`col-5 ${styles.contentLeft}`}>
               <div className={styles.mainRigh1}>
                 {/* <div className={styles.divSquare}></div> */}
                 <div className={styles.background2}></div>
                 <div className={styles.divImage2}>
-                  <Image
-                    className={styles.image2}
-                    src="/landing2.jpg"
-                    width={400}
-                    height={320}
-                  />
+                  <Image className={styles.image2} src="/landing2.jpg" width={400} height={320} />
                 </div>
               </div>
             </div>
@@ -86,45 +81,25 @@ const Landingpage = () => {
                 </div>
                 <div className={styles.divList1}>
                   <div className={styles.checklist1}>
-                    <Image
-                      className={styles}
-                      src="/checklist.png"
-                      width={15}
-                      height={15}
-                    />
+                    <Image className={styles} src="/checklist.png" width={15} height={15} />
                   </div>
                   <div>Lorem ipsum dolor sit amet.</div>
                 </div>
                 <div className={styles.divList1}>
                   <div className={styles.checklist1}>
-                    <Image
-                      className={styles}
-                      src="/checklist.png"
-                      width={15}
-                      height={15}
-                    />
+                    <Image className={styles} src="/checklist.png" width={15} height={15} />
                   </div>
                   <div>Lorem ipsum dolor sit amet.</div>
                 </div>
                 <div className={styles.divList1}>
                   <div className={styles.checklist1}>
-                    <Image
-                      className={styles}
-                      src="/checklist.png"
-                      width={15}
-                      height={15}
-                    />
+                    <Image className={styles} src="/checklist.png" width={15} height={15} />
                   </div>
                   <div>Lorem ipsum dolor sit amet.</div>
                 </div>
                 <div className={styles.divList1}>
                   <div className={styles.checklist1}>
-                    <Image
-                      className={styles}
-                      src="/checklist.png"
-                      width={15}
-                      height={15}
-                    />
+                    <Image className={styles} src="/checklist.png" width={15} height={15} />
                   </div>
                   <div>Lorem ipsum dolor sit amet.</div>
                 </div>
@@ -142,52 +117,31 @@ const Landingpage = () => {
                 <h3>Skill Tallent</h3>
               </div>
               <div className={styles.divLorem}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                euismod ipsum et dui rhoncus auctor.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.
               </div>
               <div className={styles.divList3}>
-                <div style={{ marginRight: "100px" }}>
+                <div style={{ marginRight: '100px' }}>
                   <div className={styles.divList1}>
                     <div className={styles.checklist1}>
-                      <Image
-                        className={styles}
-                        src="/checkyellow.png"
-                        width={15}
-                        height={15}
-                      />
+                      <Image className={styles} src="/checkyellow.png" width={15} height={15} />
                     </div>
                     <div>Java</div>
                   </div>
                   <div className={styles.divList1}>
                     <div className={styles.checklist1}>
-                      <Image
-                        className={styles}
-                        src="/checkyellow.png"
-                        width={15}
-                        height={15}
-                      />
+                      <Image className={styles} src="/checkyellow.png" width={15} height={15} />
                     </div>
                     <div>Kotlin</div>
                   </div>
                   <div className={styles.divList1}>
                     <div className={styles.checklist1}>
-                      <Image
-                        className={styles}
-                        src="/checkyellow.png"
-                        width={15}
-                        height={15}
-                      />
+                      <Image className={styles} src="/checkyellow.png" width={15} height={15} />
                     </div>
                     <div>PHP</div>
                   </div>
                   <div className={styles.divList1}>
                     <div className={styles.checklist1}>
-                      <Image
-                        className={styles}
-                        src="/checkyellow.png"
-                        width={15}
-                        height={15}
-                      />
+                      <Image className={styles} src="/checkyellow.png" width={15} height={15} />
                     </div>
                     <div>Javascript</div>
                   </div>
@@ -195,45 +149,25 @@ const Landingpage = () => {
                 <div>
                   <div className={styles.divList1}>
                     <div className={styles.checklist1}>
-                      <Image
-                        className={styles}
-                        src="/checkyellow.png"
-                        width={15}
-                        height={15}
-                      />
+                      <Image className={styles} src="/checkyellow.png" width={15} height={15} />
                     </div>
                     <div>Golang</div>
                   </div>
                   <div className={styles.divList1}>
                     <div className={styles.checklist1}>
-                      <Image
-                        className={styles}
-                        src="/checkyellow.png"
-                        width={15}
-                        height={15}
-                      />
+                      <Image className={styles} src="/checkyellow.png" width={15} height={15} />
                     </div>
                     <div>C++</div>
                   </div>
                   <div className={styles.divList1}>
                     <div className={styles.checklist1}>
-                      <Image
-                        className={styles}
-                        src="/checkyellow.png"
-                        width={15}
-                        height={15}
-                      />
+                      <Image className={styles} src="/checkyellow.png" width={15} height={15} />
                     </div>
                     <div>Ruby</div>
                   </div>
                   <div className={styles.divList1}>
                     <div className={styles.checklist1}>
-                      <Image
-                        className={styles}
-                        src="/checkyellow.png"
-                        width={15}
-                        height={15}
-                      />
+                      <Image className={styles} src="/checkyellow.png" width={15} height={15} />
                     </div>
                     <div>10+ Bahasa Lainnya</div>
                   </div>
@@ -242,17 +176,12 @@ const Landingpage = () => {
             </div>
 
             {/* ------Right------- */}
-            <div className="col-5">
+            <div className={`col-5 ${styles.contentSection3}`}>
               <div className={styles.mainRigh1}>
                 {/* <div className={styles.divSquare}></div> */}
                 <div className={styles.background3}></div>
                 <div className={styles.divImage3}>
-                  <Image
-                    className={styles.image3}
-                    src="/landing3.jpg"
-                    width={470}
-                    height={330}
-                  />
+                  <Image className={styles.image3} src="/landing3.jpg" width={470} height={330} />
                 </div>
               </div>
             </div>
