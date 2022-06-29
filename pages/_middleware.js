@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
 export default function middleware(req) {
   const { token } = req.cookies;
@@ -8,8 +8,15 @@ export default function middleware(req) {
     pathname != `/login` &&
     pathname != `/register/worker` &&
     pathname != `/register/company` &&
-    pathname != `/`
-    // pathname != `/profile/edit`
+    pathname != `/` &&
+    pathname != `/peworldIcon.png` &&
+    pathname != `/b9de1e2e658498c339524384fbdc112d.jpg` &&
+    pathname != `/landing2.jpg` &&
+    pathname != `/checklist.png` &&
+    pathname != `/checkyellow.png` &&
+    pathname != `/landing3.jpg` &&
+    pathname != `/profile-default.png` &&
+    pathname != `/putihPeworld.png`
   ) {
     return NextResponse.redirect(`${origin}/login`);
   }
