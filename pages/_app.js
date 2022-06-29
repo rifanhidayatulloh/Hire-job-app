@@ -1,9 +1,9 @@
-import "../styles/globals.css";
-import "bootstrap/dist/css/bootstrap.css";
-import LayoutMain from "../layouts/Layoutmain";
+import '../styles/globals.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import LayoutMain from '../layouts/layoutMain';
 
 const layouts = {
-  MainLayout: LayoutMain,
+  MainLayout: LayoutMain
 };
 
 const NoLayout = ({ children }) => {
