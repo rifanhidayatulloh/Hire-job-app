@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Image from 'next/image';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Head from 'next/head';
-import jsCookie from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 
 import styles from '../../../styles/Profile.module.css';

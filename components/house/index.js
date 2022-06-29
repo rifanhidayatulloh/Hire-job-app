@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
-import axios from 'axios';
-import cookie from 'js-cookie';
 
 import styles from '../../styles/CardHouse.module.css';
 

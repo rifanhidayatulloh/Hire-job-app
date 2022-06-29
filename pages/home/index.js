@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import axios from 'axios';
 import Head from 'next/head';
 import ReactPaginate from 'react-paginate';
-import jwtDecode from 'jwt-decode';
 
 import styles from '../../styles/House.module.css';
-import styless from '../../styles/CardHouse.module.css';
 import Card from '../../components/house/index';
+// import '../../styles/globals.css';
 
 export async function getServerSideProps(context) {
-  const { search, sort, limit, page } = context.query;
+  const { search, sort, page } = context.query;
   const getSearch = !search ? '' : search;
   const getSort = !sort ? 'fullname' : sort;
   const { token } = context.req.cookies;
@@ -47,7 +45,6 @@ export async function getServerSideProps(context) {
 
 const Home = props => {
   const router = useRouter();
-  const [data, setData] = useState(props.getUsers.data);
   const [form, setForm] = useState('');
   const [forms, setForms] = useState('');
   // console.log(data.pagination.totalPage);
@@ -178,7 +175,7 @@ const Home = props => {
                     breakClassName="page-item"
                     breakLinkClassName="page-link"
                     containerClassName="pagination"
-                    activeClassName="active"
+                    activeClassName={styles.active}
                     renderOnZeroPageCount={null}
                   />
                 </div>

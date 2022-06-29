@@ -2,8 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
 }
 
 a {
@@ -14,3 +14,13 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/* .pagination > li.active > a {
+  color: #fff;
+  background-color: #5e50a1;
+  border-color: #5e50a1;
+} */
+
+/* ul.pagination li.active {
+  background-color: #337ab7;
+} */

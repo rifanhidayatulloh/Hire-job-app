@@ -1,9 +1,7 @@
-import React from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import Image from "next/image";
+import React from 'react';
+import Image from 'next/image';
 
-import styles from "../../styles/Footer.module.css";
+import styles from '../../styles/Footer.module.css';
 
 const Footer = () => {
   return (
@@ -21,8 +19,8 @@ const Footer = () => {
             <div className="col-1"></div>
             <div className={`col-10 ${styles.text}`}>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic
-                dolorum laudantium inventore sint dolor obcaecati explicabo sed.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic dolorum laudantium inventore sint dolor
+                obcaecati explicabo sed.
               </p>
             </div>
             <div className="col-1"></div>
