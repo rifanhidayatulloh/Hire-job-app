@@ -39,7 +39,7 @@ const HouseCard = props => {
                   <div className={styles.profession}>{!data.jobDesk ? <div></div> : data.jobDesk}</div>
                   <div className={styles.divLocation}>
                     <div style={{ marginRight: '5px' }}>
-                      <Image className={styles} src="/mapIcon.svg" width={20} height={20} />
+                      {!isError ? <></> : <Image className={styles} src="/mapIcon.svg" width={20} height={20} />}
                     </div>
                     <div className={styles.address}>{data.workplace}</div>
                   </div>
