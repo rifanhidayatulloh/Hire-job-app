@@ -16,7 +16,10 @@ export default function middleware(req) {
     pathname != `/checkyellow.png` &&
     pathname != `/landing3.jpg` &&
     pathname != `/profile-default.png` &&
-    pathname != `/putihPeworld.png`
+    pathname != `/putihPeworld.png` &&
+    pathname != `/favicon.ico` &&
+    pathname != `/iconSearch.svg` &&
+    pathname != `/profile-default.png`
   ) {
     return NextResponse.redirect(`${origin}/login`);
   }
