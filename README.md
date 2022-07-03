@@ -100,7 +100,60 @@ BACKEND_URL = [YOUR_API_URL]
 <p align="center" display=flex>
 
 <table>
+
+  <tr>
+    <td>Landing Page Before Login</td>
+    <td>Landing Page After Login</td>
+  </tr>
+  <tr>
+    <td><image src="https://i.postimg.cc/3NZHzLZC/Landingpage.png" alt="Landing Page Before Login" width=100%/></td>
+    <td><image src="https://i.postimg.cc/qMrDn3YH/Landingpage-1.png" alt="Landing Page After Login" width=100%/></td>
+  </tr>
  
+  <tr>
+    <td>Login Page</td>
+    <td>Register Worker Page</td>
+  </tr>
+  <tr>
+    <td><image src="https://i.postimg.cc/0yRNT3xD/Login-Hire-Job.png" alt="Login Page" width=100%></td>
+    <td><image src="https://i.postimg.cc/RhJM81Dg/Register-Hire-Job.png" alt="Register Worker Page" width=100%/></td>
+  </tr>
+  
+  <tr>
+    <td>Register Company Page</td>
+    <td>Home Page</td>
+  </tr>
+  <tr>
+    <td><image src="https://i.postimg.cc/FK1s3Qxt/Register-Hire-Job-1.png" alt="Register Company Page" width=100%></td>
+    <td><image src="https://i.postimg.cc/wxnfd5rD/Home.png" alt="Home Page" width=100%></td>
+  </tr>
+  
+  <tr>
+    <td>Detail Profile Portofolio Page</td>
+    <td>Detail Profile Experience Page</td>
+  </tr>
+  <tr>
+    <td><image src="https://i.postimg.cc/RhWDLXDZ/Profile.png" alt="Detail Profile Portofolio Page" width=100%></td>
+    <td><image src="https://i.postimg.cc/JhdgDfp2/Profile-1.png" alt="Detail Profile Experience Page" width=100%></td>
+  </tr>
+  
+  <tr>
+    <td>Edit Profile Worker Page</td>
+    <td>Edit Profile Company Page</td>
+  </tr>
+  <tr>
+    <td><image src="https://i.postimg.cc/B6BKw0Rh/Edit-Profile.png" alt="Edit Profile Worker Page" width=100%></td>
+    <td><image src="https://i.postimg.cc/05HQ5jGY/Edit-Profile-1.png" alt="Edit Profile Company Page" width=100%></td>
+  </tr>
+  
+  <tr>
+    <td>Profile Company Page</td>
+    <td>Chat Page</td>
+  </tr>
+  <tr>
+    <td><image src="https://i.postimg.cc/0jJqykxn/Company.png" alt="Profile Company Page" width=100%></td>
+    <td><image src="https://i.postimg.cc/5NVx2zYF/Chat.png" alt="Chat Page" width=100%></td>
+  </tr>
 
 </table>
       
