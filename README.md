@@ -1,34 +1,128 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div id="top"></div>
 
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+
+  <h3 align="center">Hire Job</h3>
+
+  <p align="center">
+    Find talented & best developers in various fields.
+    <br />
+    <a href="#table-of-contents"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://hirejob-web-app.vercel.app/">View Demo</a>
+  </p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
+
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#setup-env-example">Setup .env example</a></li>
+      </ul>
+    </li>
+    <li><a href="#screenshoots">Screenshots</a></li>
+    <li><a href="#related-project">Related Project</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+**Hire Hire** is a simple job website that can facilitating company to recruit talented programmer based on skills that company needed. It also provide programmer to show their portofolio so they can get recruited by some company.
+
+### Built With
+This app was built with some technologies below:
+* [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS?retiredLocale=id)
+* [Javascript](https://www.javascript.com/)
+* [Next Js](https://nextjs.org/)
+* [Axios](https://axios-http.com/)
+* [Bootstrap](https://getbootstrap.com/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
+Before going to the installation stage there are some software that must be installed first.
+
+* [NodeJs](https://nodejs.org/en/download/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Installation
+
+If you want to run this project locally, I recommend you to configure the [back-end](https://github.com/rifanhidayatulloh/Hire-job-api) first before configuring this repo front-end.
+- Clone the repo
+```
+git clone https://github.com/rifanhidayatulloh/Hire-job-app.git
+```
+- Go To Folder Repo
+```
+cd hirejob-frontend
+```
+- Install Module
+```
+npm install
+```
+- <a href="#setup-env">Setup .env</a>
+- Type ` npm run dev` To Start Development
+- Type ` npm run start` To Start Production
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Setup .env example
+Create .env file in your root project folder.
+```
+BACKEND_URL = [YOUR_API_URL]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Screenshoots
+<p align="center" display=flex>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+<table>
+ 
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+</table>
+      
+</p>
 
-## Learn More
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-To learn more about Next.js, take a look at the following resources:
+## Related Project
+:star: [`Backend Hire Job`](https://github.com/rifanhidayatulloh/Hire-job-api)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+:star: [`Frontend Hire Job`](https://github.com/rifanhidayatulloh/Hire-job-app)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+:star: [`Web Service`](https://hirejob-web-app.herokuapp.com/)
 
-## Deploy on Vercel
+:star: [`Demo Hire Job`](https://hirejob-web-app.vercel.app/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contact
+
+My Email : rifanhidayatulloh96@gmail.com
+
+Project Link: [https://github.com/rifanhidayatulloh/Hire-job-app](https://github.com/rifanhidayatulloh/Hire-job-app)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
