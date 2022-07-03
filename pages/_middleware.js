@@ -19,7 +19,7 @@ export default function middleware(req) {
     pathname != `/putihPeworld.png` &&
     pathname != `/favicon.ico` &&
     pathname != `/iconSearch.svg` &&
-    pathname != `/profile-default.png`
+    pathname != `/mapIcon.svg`
   ) {
     return NextResponse.redirect(`${origin}/login`);
   }
